@@ -1,0 +1,108 @@
+{
+  "language": "Svenska",
+  "page-doesnt-exists": "Sidan finns ej",
+
+  "button-save": "Spara",
+  "button-confirm": "Bekräfta",
+  "button-cancel": "Avbryt",
+  "button-remove": "Ta bort",
+  
+  "dialog-confirm-title": "Bekräfta handling",
+  "dialog-confirm-label-default": "Är du säker på att du vill göra detta?",
+
+  "navigation-title": "Asgard",
+  "navigation-home": "Startsida",
+  "navigation-about-us": "Om oss",
+  "navigation-our-rules": "Våra regler",
+  "navigation-join-us": "Gå med här",
+  "navigation-news": "Nyheter",
+  "navigation-sign-in": "Logga in här",
+  "navigation-start-app": "Starta app",
+  "navigation-our-discord": "Vår Discord",
+  "navigation-our-twitch": "Vår Twitch",
+  "navigation-our-youtube": "Vår Youtube",
+  "navigation-settings": "Inställningar",
+  "navigation-settings-signout": "Logga ut",
+
+  "home-title": "ASGARD" ,
+  "home-join-us": "Gå med här" ,
+  "home-our-rules": "Våra regler" ,
+  "home-about-us": "Om oss" ,
+  "home-sign-in": "Logga in här" ,
+  "home-start-app": "Starta app" ,
+
+  "join-us-sign-in-with-discord": "Logga in med Discord",
+  "join-us-title": "Tänk på detta innan du går med:",
+  "join-us-list-rules": {
+    "append": "Läs våra regler ",
+    "text": "här",
+    "to": "/information/rules",
+    "prepend": "."
+  },
+  "join-us-list-apply": {
+    "append": "Ansök om att gå med i organisationen ",
+    "text": "här",
+    "href": "https://robertsspaceindustries.com/orgs/ASGARD",
+    "prepend": "."
+  },
+  "join-us-list-discord": {
+    "append": "Gå med i vår discord genom ",
+    "text": "denna",
+    "href": "https://discord.com/invite/zs5humSzF7",
+    "prepend": " länk."
+  },
+
+  
+  "markdown-editor": "Redigerare",
+  "markdown-preview": "Förhandsvisa",
+
+
+  "app-section-title-public-news": "Publika artiklar",
+  "app-section-title-internal-news": "Interna artiklar",
+
+  "app-navigation-dashboard": "Dashboard",
+  "app-navigation-news": "Nyheter",
+  "app-navigation-events": "Events",
+  "app-navigation-jobs": "Uppdrag",
+  "app-navigation-market": "Blocket",
+
+  "app-news-view-all": "Visa alla",
+  "app-news-read-more": "Läs mer",
+
+  "app-create-news": "Skapa nyhet",
+  "app-create-public-news": "Skapa publik nyhet",
+  "app-create-internal-news": "Skapa intern nyhet",
+  "app-create-news-title-label": "Nyhets titel",
+  "app-create-news-body-label": "Nyhets kropp",
+  "app-create-news-submit": "Skapa nyhet",
+  "app-create-news-upload-picture": "Ladda upp omslags bild",
+  "app-create-news-preview-picture": "Förhandsvisa omslagsbild",
+  "app-create-news-publish-public": "Publisera som publik",
+  "app-create-news-publish-internal": "Publisera som intern",
+
+  
+  
+  "super-admin-navigation-home": "Hem",
+  "super-admin-navigation-roles": "Roller",
+
+  "super-admin-rules-manage-roles-title": "Redigera roller",
+  "super-admin-rules-manage-roles-list-item-read": "Tillstånd att läsa {name}",
+  "super-admin-rules-manage-roles-list-item-write": "Tillstånd att skriva {name}",
+
+  "super-admin-rules-manage-permissions-title": "Redigera tillstånd",
+  "super-admin-rules-manage-permissions-subtitle": "Att Redigera tillstånd kan ha stora konsekvenser. Ändringar gjorda här påverkar alla roller.",
+  "super-admin-rules-manage-permissions-save-label": "Alla värde och namn ersätts av ändringarna som gjorts här.",
+  "super-admin-rules-manage-permissions-remove-label": "Detta tillstånd kommer tas bort vid sparande.",
+
+  "super-admin-rules-add-permissions-title": "Addera tillstånd",
+  "super-admin-rules-add-permissions-subtitle-1": "Adderade tillstånd läggs till på alla roller.",
+  "super-admin-rules-add-permissions-subtitle-2": "Tillstånd namn ska vara på engelska.",
+  "super-admin-rules-add-permissions-name": "Namn",
+  "super-admin-rules-add-permissions-read": "Läsa",
+  "super-admin-rules-add-permissions-write": "Skriva",
+
+  "super-admin-rules-remove-permissions-title": "Anullera tillstånd",
+  "super-admin-rules-remove-permissions-subtitle-1": "Anullerade tillstånd tas bort på alla roller.",
+
+  "": "" 
+}

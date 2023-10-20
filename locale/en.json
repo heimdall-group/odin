@@ -1,0 +1,107 @@
+{
+  "language": "English",
+  "page-doesnt-exists": "Page doesnt exists",
+
+  "button-save": "Save",
+  "button-confirm": "Confirm",
+  "button-cancel": "Cancel",
+  "button-remove": "Remove",
+
+  "dialog-confirm-title": "Confirm action",
+  "dialog-confirm-label-default": "Are you sure you want to do this?",
+
+  "navigation-title": "Asgard",
+  "navigation-home": "Home",
+  "navigation-about-us": "About us",
+  "navigation-our-rules": "Our rules",
+  "navigation-join-us": "Join us",
+  "navigation-news": "News feed",
+  "navigation-sign-in": "Sign in here",
+  "navigation-start-app": "Launch app",
+  "navigation-our-discord": "Our Discord",
+  "navigation-our-twitch": "Our Twitch",
+  "navigation-our-youtube": "Our Youtube",
+  "navigation-settings": "Settings",
+  "navigation-settings-signout": "Sign out",
+
+  "home-title": "ASGARD" ,
+  "home-join-us": "Join us" ,
+  "home-our-rules": "Our rules" ,
+  "home-about-us": "About us" ,
+  "home-sign-in": "Sign in here" ,
+  "home-start-app": "Launch app" ,
+
+  "join-us-sign-in-with-discord": "Sign in with Discord",
+  "join-us-title": "Think about this before you apply:",
+  "join-us-list-rules": {
+    "append": "Read our rules ",
+    "text": "here",
+    "to": "/information/rules",
+    "prepend": "."
+  },
+  "join-us-list-apply": {
+    "append": "Apply to join the organisation ",
+    "text": "here",
+    "href": "https://robertsspaceindustries.com/orgs/ASGARD",
+    "prepend": "."
+  },
+  "join-us-list-discord": {
+    "append": "Join our discord",
+    "text": "here",
+    "href": "https://discord.com/invite/zs5humSzF7",
+    "prepend": "."
+  },
+
+
+  "markdown-editor": "Editor",
+  "markdown-preview": "Preview",
+
+
+  "app-section-title-public-news": "Public articles",
+  "app-section-title-internal-news": "Internal articles",
+
+  "app-navigation-dashboard": "Dashboard",
+  "app-navigation-news": "News",
+  "app-navigation-events": "Events",
+  "app-navigation-jobs": "Assignments",
+  "app-navigation-market": "Market",
+
+  "app-news-view-all": "View all",
+  "app-news-read-more": "Read more",
+
+  "app-create-news": "Create news",
+  "app-create-public-news": "Create public news",
+  "app-create-internal-news": "Create internal news",
+  "app-create-news-title-label": "News title",
+  "app-create-news-body-label": "News body",
+  "app-create-news-submit": "Create news",
+  "app-create-news-upload-picture": "Upload cover image",
+  "app-create-news-preview-picture": "Preview cover image",
+  "app-create-news-publish-public": "Publish as Public",
+  "app-create-news-publish-internal": "Publish as Internal",
+
+
+  "super-admin-navigation-home": "Hem",
+  "super-admin-navigation-roles": "Roller",
+
+  "super-admin-rules-manage-roles-title": "Manage Roles",
+  "super-admin-rules-manage-roles-list-item-read": "Permission to read {name}",
+  "super-admin-rules-manage-roles-list-item-write": "Permission to write {name}",
+
+  "super-admin-rules-manage-permissions-title": "Manage Permissions",
+  "super-admin-rules-manage-permissions-subtitle": "Changing permissions can have major consequence. Changes here will apply to all roles.",
+  "super-admin-rules-manage-permissions-save-label": "All values and names will be overwritten to reflect what has been filled in here.",
+  "super-admin-rules-manage-permissions-remove-label": "This permission will be removed upon saving.",
+
+  "super-admin-rules-add-permissions-title": "Add Permissions",
+  "super-admin-rules-add-permissions-subtitle-1": "Added permissions will be applied to all roles.",
+  "super-admin-rules-add-permissions-subtitle-2": "Permissions names needs to be in english.",
+  "super-admin-rules-add-permissions-name": "Name",
+  "super-admin-rules-add-permissions-read": "Read",
+  "super-admin-rules-add-permissions-write": "Write",
+
+  "super-admin-rules-remove-permissions-title": "Remove Permissions",
+  "super-admin-rules-remove-permissions-subtitle-1": "Removed permissions will be removed to all roles.",
+
+  "": "" 
+}

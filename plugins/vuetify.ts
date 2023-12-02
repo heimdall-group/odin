@@ -14,7 +14,7 @@ const dark = {
       'on-background-700': '#FFFFFF',
       'primary': '#4A328F',
       'on-primary': '#FFFFFF',
-      'secondary': '#714ddb',
+      'secondary': '#8962fc',
       // 'secondary': '#FF0266',
       'on-secondary': '#FFFFFF',
       'border-color': '#1c1c1c',

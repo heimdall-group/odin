@@ -21,9 +21,15 @@ export const useStore = defineStore('main', {
       this.global_loading = loading;
     },
     addUserDocument(user: Auth_User):void {
-      Object.assign(this.user, user);
+      this.user = Object.assign(this.user, user)
     },
     getPermissions(key: string):Permission {
+      if (Object.keys(this.user).length === 0) {
+        return {
+          read: false,
+          write: false,
+        }
+      }
       const permission =  this.user.permissions[key];
       if (permission === undefined) {
         return {

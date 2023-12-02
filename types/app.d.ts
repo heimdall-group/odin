@@ -1,14 +1,16 @@
 declare global {
   interface News {
-    title: string,
     author: {
       nickname: string,
       roles: Array<string>,
     },
     body: string,
+    cover: string,
     date: date,
-    internal: boolean,
     external: boolean,
+    id: string,
+    internal: boolean,
+    title: string,
   }
 }
 export {}

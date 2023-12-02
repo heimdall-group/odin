@@ -10,7 +10,6 @@
     viewsStore.setState(window.innerWidth)
     window.addEventListener('resize', () => {viewsStore.setState(window.innerWidth)})
   });
-
 </script>
 
 <template>
@@ -32,11 +31,11 @@
 @import url(~/assets/css/cursors.css);
 @import url(~/assets/css/selects.css);
 @import url(~/assets/css/grid.css);
+@import '@felixrydberg/discord-markdown';
 
 * {
-  font-family: 'Quicksand-Regular';
+  font-family: 'Quicksand';
   text-transform: unset !important;
-  font-weight: 400;
 }
 
 .v-btn[class^='font-weight-'] .v-btn__content {

@@ -1,8 +1,11 @@
 <script setup lang="ts">
   import { useViewsStore } from '~/stores/view-state';
+  import { useStore } from '~/stores/main';
 
   const viewsStore = useViewsStore();
   const width = computed(() => viewsStore.getWidth);
+
+  const user = computed(() => useStore().getUser)
 
   const drawer = ref(false);
 </script>
@@ -11,7 +14,7 @@
   <v-app-bar elevation="8" border rounded="lg" color="background">
     <v-app-bar-nav-icon @click="drawer = !drawer" icon="fa-solid fa-bars"></v-app-bar-nav-icon>
     <template v-if="width > 600" v-slot:append>
-
+  
     </template>
   </v-app-bar>
   <v-navigation-drawer
@@ -53,7 +56,7 @@
     <template v-slot:append>
       <v-list>
         <v-list-item>
-          <v-btn block @click="firebase_signout">{{$translate('navigation-settings-signout')}}</v-btn>
+          <v-btn block rounded="lg" @click="firebase_signout">{{$translate('navigation-settings-signout')}}</v-btn>
         </v-list-item>
         <v-list-item>
           <dialogs-settings />

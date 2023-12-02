@@ -2,19 +2,18 @@ declare global {
   interface Return {
     data?: any,
     success: boolean,
-    message?: string,
     error?: string,
-    error_code?: string,
   }
 
   interface Server_Return {
-    statusCode?: number,
-    fatal?: boolean,
-    unhandled?: boolean,
-    statusMessage?: string,
     data?: any,
-    success: boolean,
-    cause?: unknown,
+    message?: string,
+    stack?: string,
+    statusCode?: number,
+    statusMessage?: string,
+    success?: boolean,
+    type: 'Pagination' | 'Object' | 'Standard' | 'Array',
+    url?: string,
   }
 
   interface Throw_Error {

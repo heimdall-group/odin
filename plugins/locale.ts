@@ -12,7 +12,7 @@ const translations:LocaleTranslations = {
 export default defineNuxtPlugin((parameter) => {
   const { vueApp } = parameter;
   const { globalProperties } = vueApp.config;
-  const cookie = useCookie('odin-preselected-language', {maxAge: 31536000});
+  const cookie = useInternalCookie('odin-preselected-language', {maxAge: 31536000});
   let language: keyof LocaleTranslations;
   if (cookie.value === undefined || cookie.value === null) {
     cookie.value = starting_translation;

@@ -6,7 +6,9 @@ export const createCustomToken = (auth: Auth, uid: string, expires_in: number):P
       expiresAt: Date.now() + (expires_in * 1000),
     }).then((customToken: any) => {
       resolve({
-        data: customToken,
+        data: {
+          customToken,
+        },
         success: true,
       });
     })

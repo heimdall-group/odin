@@ -40,17 +40,19 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
       throw 'Couldnt find associated user'
     }
 
+    if (document.length > 1) {
+      throw 'Somehow more then 1 user was found'
+    }
+
     const { member, super_admin, nickname, joined_at, pending, roles } = document[0]
     const permissions = mergeRolePermissions(roles);
-    const names: Array<string> = []
-    roles.forEach((role: Role) => {
-      names.push(role.name)
-    })
+    const names: Array<string> = roles.map((role: Role) => role.name)
 
     return {
       data: { member, super_admin, nickname, joined_at, pending, roles: names, permissions },
       success: true,
-    };
+      type: 'Standard',
+    }
   } catch (error: any) {
     throw createError({
       statusCode: 400,

@@ -19,7 +19,7 @@
           variant="text"
           to="/app/news/internal"
         >
-          {{$translate('app-news-view-all')}}
+          {{$translate('news-view-all')}}
         </v-btn>
       </app-templates-title>
       <news-list-internal />
@@ -33,10 +33,10 @@
           variant="text"
           to="/app/news/public"
         >
-          {{$translate('app-news-view-all')}}
+          {{$translate('news-view-all')}}
         </v-btn>
       </app-templates-title>
-      <news-list-public />
+      <news-list-public href="/app/news/public" />
     </template>
   </v-container>
 </template>

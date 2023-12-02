@@ -1,42 +1,26 @@
 import News from '~/server/models/news';
+import mongoose from 'mongoose'
 
-export default defineEventHandler(async (event): Promise<PagnationReturn> => {
+export default defineEventHandler(async (event): Promise<Server_Return> => {
   try {
     if (event.context.params === undefined) {
       throw 'Missing parameters'
     }
+    const id = event.context.params.id;
+    const { token } = await readBody(event);
 
-    const token = event.context.params.token;
-    const { data, success, error } = await getPermissionsObject(token)
-    const { permissions } = data;
+    const { data, success, error } = await getPermissionsObject(token, true);
+    const { permissions, member, super_admin } = data;
 
-    if (permissions['internal-news'] === undefined || !permissions['internal-news'].read) {
+    if ((permissions['internal-news'] === undefined || !permissions['internal-news'].read) && !super_admin) {
       throw 'Permission denied'
     }
 
-    const { limit, skip } = await readBody(event);
-    if (limit === undefined) {
-      throw 'Missing limit'
-    }
-    if (skip === undefined) {
-      throw 'Missing skip'
-    }
-
-    const max_count = await News.find({internal: true}).count()
     const document = await News.aggregate([
       {
         $match: {
-          internal: true,
+          _id: new mongoose.Types.ObjectId(id),
         }
-      },
-      {
-        $sort: {date: -1},
-      },
-      {
-        $limit: skip + limit,
-      },
-      {
-        $skip: skip,
       },
       {
         $lookup: {
@@ -65,6 +49,7 @@ export default defineEventHandler(async (event): Promise<PagnationReturn> => {
             nickname: '$users.nickname',
             roles: '$roles.name'
           },
+          cover: '$cover',
           body: '$body',
           date: '$date',
           internal: '$internal',
@@ -73,15 +58,15 @@ export default defineEventHandler(async (event): Promise<PagnationReturn> => {
       }
     ])
 
-    return {
-      data: {
-        limit: limit,
-        skip: skip,
-        collection_size: max_count,
-        result: document,
-      },
+    if (document[0] && (document[0].internal && !permissions['internal-news'].read)) {
+      throw 'Permission denied'
+    }
+
+    return removeRequestKeys({
+      data: document[0],
+      type: 'Object',
       success: true,
-    };
+    }, event);
   } catch (error: any) {
     console.log(error)
     throw createError({

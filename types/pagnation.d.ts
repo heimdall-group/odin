@@ -1,5 +1,5 @@
 declare global {
-  interface PagnationReturn extends Server_Return {
+  interface PaginationReturn extends Server_Return {
     data?: {
       limit: number,
       skip: number,
@@ -8,19 +8,20 @@ declare global {
     }
   }
 
-  interface usePagnationReturn {
+  interface usePaginationReturn {
     data?: Array<any> | boolean
     success: boolean,
   }
 
-  interface usePagnationParameters {
-    cache: usePagnationCache,
+  interface usePaginationParameters {
+    cache: usePaginationCache,
     url: string,
     body?: {[key: string]: any},
     headers?: {[key: string]: any},
+    excluded_keys?: Array<string>,
   }
   
-  interface usePagnationCache {
+  interface usePaginationCache {
     skip?: number,
     limit: number,
     max_count?: number,

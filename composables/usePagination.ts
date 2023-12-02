@@ -1,13 +1,14 @@
 
 
-export const usePagnation = async ({
+export const usePagination = async ({
   cache,
   url,
   body,
   headers,
-}: usePagnationParameters,
+  excluded_keys
+}: usePaginationParameters,
   result_target: globalThis.Ref<any[]>
-):Promise<usePagnationReturn> => {
+):Promise<usePaginationReturn> => {
   try {
     if (cache.completed || cache.empty) {
       return {
@@ -29,16 +30,15 @@ export const usePagnation = async ({
       cache.empty = false;
     }
 
-    const result:PagnationReturn = await $fetch(url, {
+    const result:PaginationReturn = await useInternalFetch(url, {
       method: 'POST',
       body: {
         skip: cache.skip,
         limit: cache.limit,
-        ...body
+        ...body,
       },
       headers: headers,
-    });
-
+    }, excluded_keys);
     if (!result.success) {
       throw 'Couldnt get result from provided url or an server error accured';
     }

@@ -6,6 +6,7 @@
   "button-confirm": "Confirm",
   "button-cancel": "Cancel",
   "button-remove": "Remove",
+  "button-back": "Back",
 
   "dialog-confirm-title": "Confirm action",
   "dialog-confirm-label-default": "Are you sure you want to do this?",
@@ -66,8 +67,13 @@
   "app-navigation-jobs": "Assignments",
   "app-navigation-market": "Market",
 
-  "app-news-view-all": "View all",
-  "app-news-read-more": "Read more",
+  "news-list-public": "All articles",
+  "app-news-list-public": "All public articles",
+  "app-news-list-internal": "All internal articles",
+
+  "news-view-all": "View all",
+  "news-read-more": "Read more",
+  "news-empty": "No articles to show",
 
   "app-create-news": "Create news",
   "app-create-public-news": "Create public news",

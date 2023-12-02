@@ -1,9 +1,17 @@
 import News from '~/server/models/news';
 
-export default defineEventHandler(async (event): Promise<PagnationReturn> => {
+export default defineEventHandler(async (event): Promise<PaginationReturn> => {
   try {
     if (event.context.params === undefined) {
       throw 'Missing parameters'
+    }
+
+    const token = event.context.params.token;
+    const { data, success, error } = await getPermissionsObject(token);
+    const { permissions, super_admin } = data;
+
+    if ((permissions['internal-news'] === undefined || !permissions['internal-news'].read) && !super_admin) {
+      throw 'Permission denied'
     }
 
     const { limit, skip } = await readBody(event);
@@ -14,11 +22,11 @@ export default defineEventHandler(async (event): Promise<PagnationReturn> => {
       throw 'Missing skip'
     }
 
-    const max_count = await News.find({external: true}).count()
+    const max_count = await News.find({internal: true}).count()
     const document = await News.aggregate([
       {
         $match: {
-          external: true,
+          internal: true,
         }
       },
       {
@@ -57,6 +65,7 @@ export default defineEventHandler(async (event): Promise<PagnationReturn> => {
             nickname: '$users.nickname',
             roles: '$roles.name'
           },
+          cover: '$cover',
           body: '$body',
           date: '$date',
           internal: '$internal',
@@ -65,15 +74,16 @@ export default defineEventHandler(async (event): Promise<PagnationReturn> => {
       }
     ])
 
-    return {
+    return removeRequestKeys({
       data: {
         limit: limit,
         skip: skip,
         collection_size: max_count,
         result: document,
       },
+      type: 'Pagination',
       success: true,
-    };
+    }, event);
   } catch (error: any) {
     console.log(error)
     throw createError({

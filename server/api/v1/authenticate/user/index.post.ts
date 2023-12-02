@@ -92,12 +92,12 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
       userDocument.save();
     }
 
-    return {
+    return await removeRequestKeys({
       data: {
-        token: customToken.data,
+        token: customToken.data.customToken,
       },
       success: true,
-    };
+    }, event);
   } catch (error: any) {
     // Handles Discord external errors
     if (error.name) {

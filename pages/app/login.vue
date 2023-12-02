@@ -1,7 +1,6 @@
 <script setup lang="ts">
-  
 </script>
 
 <template>
-  <default-authentication-login />
+  <app-authentication-login />
 </template>

@@ -31,7 +31,7 @@
       </v-col>
     </v-row>
     <markdown-editor v-if="editor" v-model="value" />
-    <markdown-preview v-else v-model="value" />
+    <markdown-preview class="theme-dark" v-else v-model="value" />
   </section>
 </template>
 

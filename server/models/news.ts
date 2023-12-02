@@ -2,12 +2,16 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema(
   {
-    title: String,
     author: String,
     body: String,
+    cover: {
+      type: String,
+      required: true,
+    },
     date: Date,
-    internal: Boolean,
     external: Boolean,
+    internal: Boolean,
+    title: String,
   },
 )
 export default mongoose.model("News", schema);

@@ -75,18 +75,18 @@ Vue global properties:
   - When making external requests (Discord, Firebase) handle error before throwing createError. Parsing external projects might create an unhandled error in the createError function.
 
 ## Composables
-- ## usePagnation
-  - A function that can be placed inside of a useAsyncData composable. Interfaces can be found in types/pagnation.d.ts
+- ## usePagination
+  - A function that can be placed inside of a useAsyncData composable. Interfaces can be found in types/Pagination.d.ts
   - Add the following to setup in a component / page.
   - Cache will be updated with completion / empty booleans depending on result
   - Second parameter provided has to be a "ref([])". This ref will be updated with the data when refresh / initial fetch.
   - To get more data just run the refresh function
   ```js
     const news = ref([] as Array<News>);
-    const cache:usePagnationCache = reactive({limit: 5});
+    const cache:usePaginationCache = reactive({limit: 5});
     const token = await user.value.getIdToken();
-    const { data, pending, refresh } = await useAsyncData('internal-news', () => usePagnation({
-      url: `/api/v1/news/internal/${token}`,
+    const { data, pending, refresh } = await useAsyncData('internal-news', () => usePagination({
+      url: `/api/v1/news/articles/internal/${token}`,
       cache: cache,
     }, news));
   ```

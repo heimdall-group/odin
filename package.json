@@ -1,22 +1,35 @@
 {
-  "name": "nuxt-app",
+  "name": "odin",
+  "version": "1.0.0",
+  "main": "electron/main.ts",
+  "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --host",
-    "generate": "nuxt generate",
+    "web:build": "set ENVIRONMENT=web && set PRODUCTION=1 && nuxt build",
+    "web:dev": "set ENVIRONMENT=web && set PRODUCTION=0 && nuxt dev",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "app:frontend": "set ENVIRONMENT=app && npx nuxi generate",
+    "app:dev-backend": "set ENVIRONMENT=web && nuxt build",
+    "app:dev-create": "set PRODUCTION=0 && npm run app:frontend && npm run app:dev-backend && electron-builder",
+    "app:dev-assets": "set PRODUCTION=0 && npm run app:frontend && npm run app:dev-backend",
+    "app:start-dev": "electron .",
+    "app:start": "set PRODUCTION=1 && npm run app:make && ./.output/1.0.1/win32/x64/win-unpacked/odin.exe --inspect"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.4.2",
     "@nuxt/devtools": "latest",
     "@nuxtjs/vuetify": "^1.12.3",
+    "@types/formidable": "^3.4.5",
     "@types/node": "^18.17.3",
+    "electron": "^27.0.4",
+    "electron-builder": "^24.6.4",
     "nuxt": "^3.6.5",
     "typescript": "latest"
   },
   "dependencies": {
-    "@felixrydberg/discord-markdown": "^1.0.2",
+    "@aws-sdk/client-s3": "^3.461.0",
+    "@felixrydberg/discord-markdown": "1.1.4",
     "@fortawesome/fontawesome-free": "^6.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
@@ -24,12 +37,33 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@pinia/nuxt": "^0.4.11",
+    "dotenv": "^16.3.1",
+    "electron-serve": "^1.2.0",
     "firebase": "^9.23.0",
     "firebase-admin": "^11.10.1",
+    "formidable": "^3.5.0",
     "mongoose": "^7.3.1",
+    "nuxt-security": "^1.0.0-rc.4",
     "pinia": "^2.1.6",
     "sass": "^1.66.1",
     "vuetify": "^3.4.0-alpha.0"
+  },
+  "build": {
+    "appId": "heimdall.odin",
+    "productName": "odin",
+    "artifactName": "odin-${version}.${ext}",
+    "win": {
+      "target": "portable"
+    },
+    "linux": {
+      "target": "zip"
+    },
+    "directories": {
+      "output": ".output/production/app/src/${version}/${platform}/${arch}"
+    },
+    "extraResources": [
+      "./output/production/app/files/public"
+    ]
   },
   "overrides": {
     "vue": "latest"

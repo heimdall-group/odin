@@ -9,6 +9,7 @@
 
 <template>
   <v-container>
+    <navigation-sub-back-menu :name="$translate('app-create-news')" />
     <app-news-create-public-internal v-if="public_news.write && internal_news.write" />
     <template v-else>
       <app-news-create-public v-if="public_news.write" />

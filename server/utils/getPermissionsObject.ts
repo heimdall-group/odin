@@ -1,12 +1,41 @@
 import { getAuth } from 'firebase-admin/auth';
-import Users from "../models/users"
+import Users from "../models/users";
+import Keys from "../models/keys";
 
-export default async (token: string):Promise<Return> => {
+export default async (token: string, isPublic: boolean = false):Promise<Return> => {
   try {
     if (token === undefined) {
       throw 'Missing Token'
     }
 
+    if(token === '' && isPublic) {
+      return {
+        data: {
+          user: {},
+          member: false,
+          super_admin: false,
+          permissions: {},
+        },
+        success: true,
+      }
+    }
+
+    const result = await getFirebasePermissionsObject(token);
+    if (result.success) {
+      return result;
+    } else {
+      return await getAccessPermissionsObject(token);
+    }
+  } catch(error: any) {
+    return {
+      success: false,
+      error: error,
+    }
+  }
+}
+
+export const getFirebasePermissionsObject = async (token: string):Promise<Return> => {
+  try {
     const result = await getAuth().verifyIdToken(token);
     const document = await Users.aggregate([
       {
@@ -33,6 +62,9 @@ export default async (token: string):Promise<Return> => {
     if (document.length === 0) {
       throw 'User not found'
     }
+    if (document.length > 1) {
+      throw 'More then one user found'
+    }
 
     const roles:Array<Role> = document[0].roles
     const permissions = mergeRolePermissions(roles);
@@ -47,8 +79,21 @@ export default async (token: string):Promise<Return> => {
       success: true,
     }
   } catch(error: any) {
-    console.error(error)
-    throw 'Couldnt get Permissions Object'
+    return {
+      success: false,
+      error: error,
+    }
+  }
+}
+
+export const getAccessPermissionsObject = async (token: string):Promise<Return> => {
+  try {
+    const keyUser = await Keys.findOne({})
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error,
+    }
   }
 }
 

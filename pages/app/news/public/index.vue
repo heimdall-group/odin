@@ -11,5 +11,5 @@
 </script>
 
 <template>
-  <app-news-public />
+  <news-pages-public />
 </template>

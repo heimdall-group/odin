@@ -8,18 +8,12 @@
   definePageMeta({
     layout: "app",
   });
-
-  if (Object.keys(user.value).length === 0) {
-    await router.push('/')
-  }
-
-  if (!user.value.member && !user.value.super_admin) {
-    await router.push('/')
-  }
-
-  console.log('app.vue')
 </script>
 
 <template>
   <NuxtPage v-if="Object.keys(user).length > 0"></NuxtPage>
+  <div v-else-if="Object.keys(user).length > 0 && !user.member && !user.super_admin">
+    Not a member
+  </div>
+  <app-authentication-login v-else />
 </template>

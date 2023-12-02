@@ -4,9 +4,9 @@
   const store = useStore();
   const user = computed(() => store.getUser);
   const news = ref([] as Array<News>);
-  const cache:usePagnationCache = reactive({limit: 5});
-  const { data, pending, refresh } = await useAsyncData('home-public-news', () => usePagnation({
-    url: `/api/v1/news/public`,
+  const cache:usePaginationCache = reactive({limit: 5});
+  const { data, pending, refresh } = await useAsyncData('home-public-news', () => usePagination({
+    url: `/api/v1/news/articles/public`,
     cache: cache,
   }, news));
 </script>
@@ -54,6 +54,7 @@
       </v-parallax>
     </section>
     <v-container>
+      <news-carosuel-public href="/information/news" />
     </v-container>
   </v-container>
 </template>

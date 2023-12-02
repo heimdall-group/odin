@@ -6,6 +6,7 @@
   "button-confirm": "Bekräfta",
   "button-cancel": "Avbryt",
   "button-remove": "Ta bort",
+  "button-back": "Tillbaka",
   
   "dialog-confirm-title": "Bekräfta handling",
   "dialog-confirm-label-default": "Är du säker på att du vill göra detta?",
@@ -66,8 +67,13 @@
   "app-navigation-jobs": "Uppdrag",
   "app-navigation-market": "Blocket",
 
-  "app-news-view-all": "Visa alla",
-  "app-news-read-more": "Läs mer",
+  "news-list-public": "Alla artiklar",
+  "app-news-list-public": "Alla publika artiklar",
+  "app-news-list-internal": "Alla interna artiklar",
+
+  "news-view-all": "Visa alla",
+  "news-read-more": "Läs mer",
+  "news-empty": "Inga artiklar att visa",
 
   "app-create-news": "Skapa nyhet",
   "app-create-public-news": "Skapa publik nyhet",
@@ -80,7 +86,6 @@
   "app-create-news-publish-public": "Publisera som publik",
   "app-create-news-publish-internal": "Publisera som intern",
 
-  
   
   "super-admin-navigation-home": "Hem",
   "super-admin-navigation-roles": "Roller",

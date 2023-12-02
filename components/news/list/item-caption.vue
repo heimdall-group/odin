@@ -29,7 +29,7 @@
           class="font-weight-bold mx-2"
           variant="text"
         >
-          {{$translate('app-news-read-more')}}
+          {{$translate('news-read-more')}}
         </v-btn>
       </v-col>
     </v-row>

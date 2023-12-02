@@ -3,17 +3,18 @@
 
   const store = useStore();
   const user = computed(() => store.getUser);
+  console.log(user.value)
   const token = await user.value.getIdToken();
   const news = ref([] as Array<News>);
-  const cache:usePagnationCache = reactive({limit: 5});
-  const { data, pending, refresh } = await useAsyncData('home-public-news', () => usePagnation({
-    url: `/api/v1/news/internal/${token}`,
+  const cache:usePaginationCache = reactive({limit: 5});
+  const { data, pending, refresh } = await useAsyncData('home-public-news', () => usePagination({
+    url: `/api/v1/news/articles/internal/${token}`,
     cache: cache,
   }, news));
 </script>
 
 <template>
-  <app-news-sections-template :news="news" :cache="cache" card-title="app-section-title-internal-news" />
+  <app-news-sections-template :news="news" :cache="cache" card-title="app-section-title-internal-news" href="/app/news/internal" />
 </template>
 
 <style scoped>

@@ -3,6 +3,10 @@
     'article': {
       type: Object,
       required: true,
+    },
+    'href': {
+      type: String,
+      required: true,
     }
   })
 </script>
@@ -10,6 +14,7 @@
 <template>
   <v-card
     color="background-700"
+    class="ma-2"
     variant="outlined"
     flat
   >
@@ -21,14 +26,15 @@
           {{new Date(article.date).toDateString()}}
         </v-card-subtitle>
       </v-col>
-      <v-col cols="auto" class="pa-0 d-flex align-center">
+      <v-col cols="auto" class="pa-3 d-flex align-center">
         <v-btn
           color="secondary"
           :ripple="false"
-          class="font-weight-bold mx-2"
+          class="font-weight-bold"
           variant="text"
+          :to="href"
         >
-          {{$translate('app-news-read-more')}}
+          {{$translate('news-read-more')}}
         </v-btn>
       </v-col>
     </v-row>

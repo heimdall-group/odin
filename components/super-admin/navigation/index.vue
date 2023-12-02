@@ -38,7 +38,7 @@
     <template v-slot:append>
       <v-list>
         <v-list-item>
-          <v-btn block @click="firebase_signout">{{$translate('navigation-settings-signout')}}</v-btn>
+          <v-btn block rounded @click="firebase_signout">{{$translate('navigation-settings-signout')}}</v-btn>
         </v-list-item>
         <v-list-item>
           <dialogs-settings />

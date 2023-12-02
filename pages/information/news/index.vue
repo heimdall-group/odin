@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <default-information-news />
+  <news-pages-public  />
 </template>

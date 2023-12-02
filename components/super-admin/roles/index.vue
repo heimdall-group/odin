@@ -26,7 +26,7 @@
   const manage_permissions_loading = ref(false);
 
   const token = await user.value.getIdToken();
-  const { data, pending, refresh } = await useAsyncData('roles', () => $fetch(`/api/v1/roles/${token}`, {
+  const { data, pending, refresh } = await useAsyncData('roles', () => useInternalFetch(`/api/v1/roles/${token}`, {
     method: 'GET',
   }));
 
@@ -67,7 +67,7 @@
   const savePermissions = async () => {
     roles_loading.value = true;
     const token = await user.value.getIdToken();
-    const result = await $fetch(`/api/v1/roles/manage/${token}`, {
+    const result = await useInternalFetch(`/api/v1/roles/manage/${token}`, {
       method: 'PUT',
       body: {
         id: role.value.id,
@@ -81,7 +81,7 @@
   const addPermissions = async () => {
     new_permission_loading.value = true;
     const token = await user.value.getIdToken();
-    const result = await $fetch(`/api/v1/roles/permissions/add/${token}`, {
+    const result = await useInternalFetch(`/api/v1/roles/permissions/pledge/${token}`, {
       method: 'PUT',
       body: {
         name: new_permission_name.value,
@@ -115,7 +115,7 @@
   const managePermissions = async () => {
     manage_permissions_loading.value = true;
     const token = await user.value.getIdToken();
-    const result = await $fetch(`/api/v1/roles/permissions/manage/${token}`, {
+    const result = await useInternalFetch(`/api/v1/roles/permissions/manage/${token}`, {
       method: 'PUT',
       body: {
         permissions: permissions.value,
@@ -138,7 +138,7 @@
     remove_permission_loading.value = true;
     const token = await user.value.getIdToken();
     const name = remove_permission_name.value.replace(' ', '-');
-    const result = await $fetch(`/api/v1/roles/permissions/remove/${token}`, {
+    const result = await useInternalFetch(`/api/v1/roles/permissions/revoke/${token}`, {
       method: 'PUT',
       body: {
         name: name,

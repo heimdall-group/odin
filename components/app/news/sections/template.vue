@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  import { useViewsStore } from '~/stores/view-state';
+
+  const viewsStore = useViewsStore();
   const props = defineProps({
     'news': {
       type: Array<News>,
@@ -10,6 +13,10 @@
     },
     'cache': {
       type: Object,
+      required: true,
+    },
+    'href': {
+      type: String,
       required: true,
     }
   })
@@ -25,12 +32,13 @@
         :ripple="false"
         class="font-weight-bold text-decoration-underline"
         variant="text"
+        :to="href"
       >
-        {{$translate('app-news-view-all')}}
+        {{$translate('news-view-all')}}
       </v-btn>
     </template>
       <v-row class="ma-0" justify="center">
-          <v-col cols="12" md="7">
+          <v-col cols="12" md="6">
             <v-card color="background-700" variant="outlined" class="h-100" flat>
               <v-card-title class="text-white">{{main_article.title}}</v-card-title>
               <v-card-subtitle class="text-white">
@@ -45,20 +53,22 @@
                   :ripple="false"
                   class="font-weight-bold"
                   variant="text"
+                  :to="href + `/${main_article.id}`"
                 >
-                  {{$translate('app-news-read-more')}}
+                  {{$translate('news-read-more')}}
                 </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
-          <v-col cols="12" md="5">
-            <v-row>
+          <v-col cols="12" md="6" class="pa-1">
+            <v-row class="ma-0">
               <v-col
                 v-for="(article, index) in latest_articles"
                 :key="`home-news-latest-articles-${index}`"
-                cols="3" md="12"
+                cols="12"
+                class="pa-0"
               >
-                <news-list-item :article="article" />
+                <news-list-item :href="href + `/${article.id}`" :article="article" />
               </v-col>
             </v-row>
           </v-col>

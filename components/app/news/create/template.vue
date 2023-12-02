@@ -1,28 +1,13 @@
 <script setup lang="ts">
+  import { useStore } from '~/stores/main'
+
+  const store = useStore();
+  const user = computed(() => store.getUser);
+
   const props = defineProps({
-    'title': {
-      type: String,
-      required: true,
-    },
-    'body': {
-      type: String,
-      required: true,
-    },
     'cardTitle': {
       type: String,
       required: true,
-    },
-    'loading': {
-      type: Boolean,
-      required: true,
-    },
-    'internal': {
-      type: Boolean,
-      required: false,
-    },
-    'external': {
-      type: Boolean,
-      required: false,
     },
     'both': {
       type: Boolean,
@@ -30,72 +15,68 @@
     },
   });
 
-  const emits = defineEmits(['update:title', 'update:body', 'update:internal', 'update:external', 'submit'])
+  const title = ref('');
+  const body = ref('');
+  const loading = ref(false);
+  const internal = ref(true);
+  const external = ref(true);
+
   const state = ref(1);
-  const file = ref([]);
   const image = ref('');
+  const files = ref<File| null>(null);
   const dialog = ref(false);
 
-  const internal_title = computed({
-    get() {
-      return props.title
-    },
-    set(value) {
-      emits('update:title', value)
-    }
-  })
-  const internal_body = computed({
-    get() {
-      return props.body
-    },
-    set(value) {
-      emits('update:body', value)
-    }
-  })
-  const internal_internal = computed({
-    get() {
-      return props.internal
-    },
-    set(value) {
-      console.log(value)
-      emits('update:internal', value)
-    }
-  })
-  const internal_external = computed({
-    get() {
-      return props.external
-    },
-    set(value) {
-      console.log(value)
-      emits('update:external', value)
-    }
-  })
-
-  const onInput = () => {
-    console.log(file.value[0])
-    if (file.value[0]) {
+  const onInput = (event: Event) => {
+    const file = (event.target as HTMLInputElement).files[0];
+    if (file) {
       const reader = new FileReader(); 
       reader.onload = () => {
         if (reader.result) {
           image.value = reader.result as string;
           state.value++
+
+          files.value = file
         }
       }
-      reader.readAsDataURL(file.value[0])
+      reader.readAsDataURL(file)
     }
   }
+
+  const onSubmit = async () => {
+    try {
+      const token = await user.value.getIdToken();
+      const coverResult = await uploadFiles(files.value);
+      if (!coverResult.success) {
+        throw 'Cover wasnt able to be uploaded'
+      }
+      const articleResult = await useInternalFetch(`/api/v1/news/article/new/${token}`, {
+        method: 'POST',
+        body: {
+          title: title.value,
+          body: body.value,
+          cover: coverResult.data[0].data.url,
+          internal: internal.value,
+          external: external.value,
+        }
+      });
+      loading.value = false;
+    } catch(error: any) {
+      console.log(error)
+      handle_error(error)
+    }
+  }
+
 </script>
 
 <template>
   <v-row class="ma-0 flex-column flex-nowrap fill-height">
-    <v-toolbar class="flex-grow-0" :title="cardTitle" color="background"></v-toolbar>
     <v-row class="flex-nowrap flex-grow-1" :class="{
       'state-1': state === 1,
       'state-2': state === 2,
     }">
       <v-col cols="12">
         <v-card height="100%" variant="outlined" color="background-700" class="d-flex justify-center align-center pa-4">
-          <v-file-input v-model="file" @update:model-value="onInput" id="upload-cover-image" class="d-none"></v-file-input>
+          <input type="file" accept="image/png, image/gif, image/jpeg" @change="onInput" id="upload-cover-image" class="d-none" />
           <v-btn color="primary" class="px-0">
             <label for="upload-cover-image">{{$translate('app-create-news-upload-picture')}}</label>
           </v-btn>
@@ -104,17 +85,17 @@
       <v-col cols="12">
         <v-form
           bg-color="background"
-          @submit.prevent="$emit('submit')"
+          @submit.prevent="onSubmit"
           class="d-flex flex-column flex-nowrap fill-height"
         >
-          <v-text-field v-model="internal_title" :label="$translate('app-create-news-title-label')" bg-color="background-800" variant="solo"></v-text-field>
-          <markdown v-model="internal_body" />
+          <v-text-field v-model="title" :label="$translate('app-create-news-title-label')" bg-color="background-800" variant="solo"></v-text-field>
+          <markdown v-model="body" />
           <section>
             <template v-if="both">
               <v-row class="flex-column" align="center">
                 <v-col cols="auto" class="pa-0">
                   <v-checkbox 
-                    v-model="internal_external"
+                    v-model="external"
                     :ripple="false"
                     :label="$translate('app-create-news-publish-public')"
                     hide-details
@@ -125,7 +106,7 @@
                 </v-col>
                 <v-col cols="auto" class="pa-0">
                   <v-checkbox 
-                    v-model="internal_internal"
+                    v-model="internal"
                     :ripple="false"
                     :label="$translate('app-create-news-publish-internal')"
                     hide-details

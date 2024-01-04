@@ -21,7 +21,7 @@
   >
     <template v-slot:activator = {props}>
       <v-btn block rounded="lg" @click="dialog = !dialog">
-        {{$translate('navigation-settings')}}
+        {{$t('navigation-settings')}}
       </v-btn>
     </template>
     <v-card

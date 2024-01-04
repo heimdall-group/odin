@@ -6,7 +6,12 @@
   "button-confirm": "Bekräfta",
   "button-cancel": "Avbryt",
   "button-remove": "Ta bort",
+  "button-add": "Lägg till",
   "button-back": "Tillbaka",
+  "button-next": "Nästa",
+  "button-upload-image": "Ladda upp bild",
+
+  "helper-text-optional": "Frivilligt",
   
   "dialog-confirm-title": "Bekräfta handling",
   "dialog-confirm-label-default": "Är du säker på att du vill göra detta?",
@@ -25,7 +30,6 @@
   "navigation-settings": "Inställningar",
   "navigation-settings-signout": "Logga ut",
 
-  "home-title": "ASGARD" ,
   "home-join-us": "Gå med här" ,
   "home-our-rules": "Våra regler" ,
   "home-about-us": "Om oss" ,
@@ -61,32 +65,101 @@
   "app-section-title-public-news": "Publika artiklar",
   "app-section-title-internal-news": "Interna artiklar",
 
+
   "app-navigation-dashboard": "Dashboard",
   "app-navigation-news": "Nyheter",
   "app-navigation-events": "Events",
+  "app-navigation-events-applications": "Event applikationer",
   "app-navigation-jobs": "Uppdrag",
   "app-navigation-market": "Blocket",
+
 
   "news-list-public": "Alla artiklar",
   "app-news-list-public": "Alla publika artiklar",
   "app-news-list-internal": "Alla interna artiklar",
 
   "news-view-all": "Visa alla",
+  "news-publish-type": "Publiserings typ",
   "news-read-more": "Läs mer",
   "news-empty": "Inga artiklar att visa",
+  "news-edit-categories-title": "Editerings kategories",
+  "news-edit-cover": "Omslagsbild",
+  "news-edit-content": "Innehåll",
+  "news-edit-default-label": "Osparade ändringar kommer att tas bort",
+  "news-edit-cover-label": "Osparade bilder kommer att tas bort",
+  "news-edit-content-label": "Osparade text ändringar kommer att tas bort",
+  "news-edit-changes": "Iscensatta ändringar",
+  "news-edit-names-title": "Nyhets titel",
+  "news-edit-names-body": "Nyhets kropp",
+  "news-edit-names-cover": "Nyhets omslag",
+  "news-edit-names-internal": "Intern publisering",
+  "news-edit-names-external": "Publik publisering",
 
   "app-create-news": "Skapa nyhet",
+  "app-edit-news": "Editera artikel",
   "app-create-public-news": "Skapa publik nyhet",
   "app-create-internal-news": "Skapa intern nyhet",
   "app-create-news-title-label": "Nyhets titel",
   "app-create-news-body-label": "Nyhets kropp",
   "app-create-news-submit": "Skapa nyhet",
-  "app-create-news-upload-picture": "Ladda upp omslags bild",
   "app-create-news-preview-picture": "Förhandsvisa omslagsbild",
   "app-create-news-publish-public": "Publisera som publik",
   "app-create-news-publish-internal": "Publisera som intern",
 
+
+  "app-create-event": "Skapa event",
+  "app-create-event-title-label": "Event titel",
+  "app-create-event-title-label-error": "Titel är obligatoriskt",
+  "app-create-event-desc-label": "Event beskrivning",
+  "app-create-event-desc-label-error": "Beskrivning är obligatoriskt",
+  "app-create-event-checkbox-public": "Publisera event",
+  "app-create-event-checkbox-include-groups": "Inkludera grupper",
+  "app-event-active": "Aktiv",
+  "app-event-reserve": "Reservera",
+  "app-event-application-title": "Skicka ansökan",
+  "app-event-application-label": "Denna roll kräver godkännande, vill du skicka in en ansökan?",
+  "app-event-application-empty": "Finns inte applikationer som väntar på svar",
+  "app-event-types-label": "Event typ",
+  "app-event-types-combat": "Militär",
+  "app-event-types-industry": "Industri",
+  "app-event-types-social": "Socialt",
+  "app-event-calender-read-more": "Läs mer",
+  "app-event-calender-interested": "Anmäl intresse",
   
+  "app-event-recurring-type-label": "Schemaläggning",
+  "app-event-recurring-type-none": "Ingen",
+  "app-event-recurring-type-weekly": "Varje vecka",
+  "app-event-recurring-type-every-other-week": "Varannan vecka",
+  "app-event-recurring-type-monthy-first-current-day": "Första {date} varje månad",
+  "app-event-recurring-type-annually": "Årligen",
+  "app-event-recurring-type-weekdays": "Veckodagar",
+
+  "app-create-event-combat-groups-title": "Militär skvadroner",
+
+  "app-create-event-combat-group-title": "Grupp",
+  "app-create-event-combat-group-label": "Grupp namn",
+  "app-create-event-combat-group-label-error": "Grupp namn är obligatoriskt",
+  "app-create-event-combat-application": "Applikation",
+
+  "app-event-combat-types-label": "Skvadron typ",
+  "app-event-combat-types-air": "Luft",
+  "app-event-combat-types-ground": "Mark",
+  "app-event-combat-types-mechanised": "Mekaniserad",
+
+  "app-create-event-combat-roles-label": "Roller",
+  "app-create-event-combat-roles-add-label": "Lägg till roll",
+  "app-create-event-combat-roles-missing": "Inga tillagda roller",
+  "app-create-event-combat-roles-title": "Roll namn",
+  "app-create-event-combat-roles-title-error": "Roll namn är obligatoriskt",
+
+
+  "app-create-event-combat-group-chief": "Officer",
+  "app-create-event-combat-xo": "Verkställande Officer",
+  "app-create-event-combat-troop": "Soldat",
+  "app-create-event-combat-custom": "Anpassat",
+
+
+
   "super-admin-navigation-home": "Hem",
   "super-admin-navigation-roles": "Roller",
 

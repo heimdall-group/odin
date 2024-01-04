@@ -12,10 +12,9 @@
 </script>
 
 <template>
-  <v-card
-    color="background-700"
+  <v-sheet
     class="ma-2"
-    variant="outlined"
+    rounded
     flat
   >
     <v-row class="ma-0">
@@ -23,7 +22,7 @@
         <v-card-title class="text-white">{{article.title}}</v-card-title>
         <v-card-subtitle class="text-white mb-4">
           {{article.author.nickname}} |
-          {{new Date(article.date).toDateString()}}
+          {{$d(article.date)}}
         </v-card-subtitle>
       </v-col>
       <v-col cols="auto" class="pa-3 d-flex align-center">
@@ -34,9 +33,9 @@
           variant="text"
           :to="href"
         >
-          {{$translate('news-read-more')}}
+          {{$t('news-read-more')}}
         </v-btn>
       </v-col>
     </v-row>
-  </v-card>
+  </v-sheet>
 </template>

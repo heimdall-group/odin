@@ -9,7 +9,7 @@
 
 <template>
   <v-container>
-    <v-card v-if="!cache.empty && cache.completed" class="pa-4" rounded variant="outlined" color="background-700">
+    <v-card v-if="!cache.empty && cache.completed" class="pa-4" rounded variant="outlined">
       <v-row class="ma-0" justify="center">
         <v-col
           v-for="(article, index) in news"
@@ -17,7 +17,6 @@
           cols="12"
         >
           <v-card
-            color="background-700"
             variant="outlined"
             flat
             class="pb-4"
@@ -25,13 +24,13 @@
             <v-card-title class="text-white">{{article.title}}</v-card-title>
             <v-card-subtitle class="text-white">
               {{article.author.nickname}} |
-              {{new Date(article.date).toDateString()}}
+              {{$d(article.date)}}
             </v-card-subtitle>
           </v-card>
         </v-col>
       </v-row>
     </v-card>
-    <v-card v-else class="pa-4" height="350px" rounded variant="outlined" color="background-700">
+    <v-card v-else class="pa-4" height="350px" rounded variant="outlined">
       <v-row class="fill-height" justify="center" align="center">
         <v-card-title class="text-white">Inga nyhetsinlägg</v-card-title>
       </v-row>

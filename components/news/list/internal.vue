@@ -3,27 +3,32 @@
 
   const store = useStore();
   const user = computed(() => store.getUser);
-  const token = await user.value.getIdToken();
+  const token = ref(await user.value.getIdToken());
 
-  const news = ref([] as Array<News>);
-  const cache:usePaginationCache = reactive({limit: 6});
   const props = defineProps({
     'pagination': {
       type: Boolean,
       required: false,
       default: false,
     }
-  })
+  });
+  const news = ref([] as Array<News>);
+  const cache:usePaginationCache = reactive({limit: props.pagination ? 10 : 6});
 
   const { data, pending, refresh } = await useAsyncData('list-internal-news', () => usePagination({
-    url: `/api/v1/news/articles/internal/${token}`,
+    url: `/api/v1/news/articles/internal/${token.value}`,
     cache: cache,
-    excluded_keys: ['body']
+    remove: ['body', 'summary']
   }, news));
+
+  const handleRefresh = async () => {
+    token.value = await user.value.getIdToken()
+    refresh();
+  }
 </script>
 
 <template>
-  <news-list-template :news="news" name="internal" :cache="cache" href="/app/news/internal" :pagination="refresh" />
+  <news-list-template :news="news" name="internal" :cache="cache" href="/app/news/internal" :pagination="handleRefresh" />
 </template>
 
 <style scoped>

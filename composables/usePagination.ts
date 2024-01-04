@@ -5,12 +5,12 @@ export const usePagination = async ({
   url,
   body,
   headers,
-  excluded_keys
+  remove
 }: usePaginationParameters,
   result_target: globalThis.Ref<any[]>
 ):Promise<usePaginationReturn> => {
   try {
-    if (cache.completed || cache.empty) {
+    if (cache.completed || cache.empty || cache.fetching) {
       return {
         data: false,
         success: false,
@@ -29,7 +29,11 @@ export const usePagination = async ({
     if (cache.empty === undefined) {
       cache.empty = false;
     }
+    if (cache.fetching === undefined) {
+      cache.fetching = false;
+    }
 
+    cache.fetching = true;
     const result:PaginationReturn = await useInternalFetch(url, {
       method: 'POST',
       body: {
@@ -38,7 +42,9 @@ export const usePagination = async ({
         ...body,
       },
       headers: headers,
-    }, excluded_keys);
+    }, remove);
+    cache.fetching = false;
+
     if (!result.success) {
       throw 'Couldnt get result from provided url or an server error accured';
     }

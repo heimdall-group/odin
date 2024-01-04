@@ -25,12 +25,12 @@
       <v-list>
         <v-list-item>
           <v-btn block rounded="lg" exact to="/super-admin">
-            {{$translate('super-admin-navigation-home')}}
+            {{$t('super-admin-navigation-home')}}
           </v-btn>
         </v-list-item>
         <v-list-item>
           <v-btn block rounded="lg" exact to="/super-admin/roles">
-            {{$translate('super-admin-navigation-roles')}}
+            {{$t('super-admin-navigation-roles')}}
           </v-btn>
         </v-list-item>
       </v-list>
@@ -38,7 +38,7 @@
     <template v-slot:append>
       <v-list>
         <v-list-item>
-          <v-btn block rounded @click="firebase_signout">{{$translate('navigation-settings-signout')}}</v-btn>
+          <v-btn block rounded @click="firebase_signout">{{$t('navigation-settings-signout')}}</v-btn>
         </v-list-item>
         <v-list-item>
           <dialogs-settings />

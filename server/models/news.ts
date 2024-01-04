@@ -11,6 +11,7 @@ const schema = new mongoose.Schema(
     date: Date,
     external: Boolean,
     internal: Boolean,
+    summary: String,
     title: String,
   },
 )

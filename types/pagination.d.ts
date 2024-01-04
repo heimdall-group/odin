@@ -18,15 +18,16 @@ declare global {
     url: string,
     body?: {[key: string]: any},
     headers?: {[key: string]: any},
-    excluded_keys?: Array<string>,
+    remove?: Array<string>,
   }
   
   interface usePaginationCache {
-    skip?: number,
-    limit: number,
-    max_count?: number,
     completed?: boolean,
     empty?: boolean,
+    fetching?: boolean,
+    limit: number,
+    max_count?: number,
+    skip?: number,
   }
 }
 

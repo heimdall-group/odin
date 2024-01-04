@@ -28,7 +28,7 @@
   <template v-if="width < 1280">
     <v-app-bar color="background">
       <v-app-bar-nav-icon @click="drawer = !drawer" icon="fa-solid fa-bars"></v-app-bar-nav-icon>
-      <v-app-bar-title>{{$translate('navigation-title')}}</v-app-bar-title>
+      <v-app-bar-title>{{$t('navigation-title')}}</v-app-bar-title>
       <template v-if="width > 600" v-slot:append>
         <v-btn
           color="primary" 
@@ -37,7 +37,7 @@
           class="mr-2"
           to="/information/join-us"
         >
-          {{$translate('navigation-join-us')}}
+          {{$t('navigation-join-us')}}
         </v-btn>
       </template>
     </v-app-bar>
@@ -53,28 +53,28 @@
       </template>
     </v-navigation-drawer>
   </template>
-    <v-navigation-drawer
-      v-else
-      rail
-      disable-resize-watcher
-      disable-route-watcher
-      expand-on-hover
-      class="default-navigation"
-    >
-      <template v-slot:prepend>
-        <v-list>
-          <v-list-item
-            prepend-icon="fa-solid fa-bars"
-            class="navigation-title"
-            :title="$translate('navigation-title')"
-          />
-        </v-list>
-      </template>
-      <default-navigation-row />
-      <template v-slot:append>
-        <default-navigation-append :links="external_links" />
-      </template>
-    </v-navigation-drawer>
+  <v-navigation-drawer
+    v-else
+    rail
+    disable-resize-watcher
+    disable-route-watcher
+    expand-on-hover
+    class="default-navigation"
+  >
+    <template v-slot:prepend>
+      <v-list>
+        <v-list-item
+          prepend-icon="fa-solid fa-bars"
+          class="navigation-title"
+          :title="$t('navigation-title')"
+        />
+      </v-list>
+    </template>
+    <default-navigation-row />
+    <template v-slot:append>
+      <default-navigation-append :links="external_links" />
+    </template>
+  </v-navigation-drawer>
 </template>
 
 <style>

@@ -8,28 +8,28 @@
         prepend-icon="empty"
       >
         <v-btn block rounded="lg" to="/">
-          {{$translate('navigation-home')}}
+          {{$t('navigation-home')}}
         </v-btn>
       </v-list-item>
       <v-list-item
         prepend-icon="empty"
       >
         <v-btn block rounded="lg" to="/information">
-          {{$translate('navigation-about-us')}}
+          {{$t('navigation-about-us')}}
         </v-btn>
       </v-list-item>
       <v-list-item
         prepend-icon="empty"
       >
         <v-btn block rounded="lg" to="/information/news">
-          {{$translate('navigation-news')}}
+          {{$t('navigation-news')}}
         </v-btn>
       </v-list-item>
       <v-list-item
         prepend-icon="empty"
       >
         <v-btn color="primary" block rounded="lg" to="/information/join-us">
-          {{$translate('navigation-join-us')}}
+          {{$t('navigation-join-us')}}
         </v-btn>
       </v-list-item>
     </v-list>

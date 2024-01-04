@@ -1,4 +1,6 @@
 <template>
   <default-navigation />
-  <slot></slot>
+  <v-main>
+    <slot></slot>
+  </v-main>
 </template>

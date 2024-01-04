@@ -26,7 +26,7 @@
   const manage_permissions_loading = ref(false);
 
   const token = await user.value.getIdToken();
-  const { data, pending, refresh } = await useAsyncData('roles', () => useInternalFetch(`/api/v1/roles/${token}`, {
+  const { data } = await useAsyncData('roles', () => useInternalFetch(`/api/v1/roles/${token}`, {
     method: 'GET',
   }));
 
@@ -161,7 +161,7 @@
 <template>
   <v-container class="super-admin-roles">
     <v-row class="ma-0">
-      <app-templates-section class="manage-roles" cols="12" :card-title="$translate('super-admin-rules-manage-roles-title')">
+      <app-templates-section class="manage-roles" cols="12" :card-title="$t('super-admin-rules-manage-roles-title')">
           <v-row class="flex-nowrap" :class="{'permissions-view': permissions_view}">
             <v-col cols="12" class="pt-0 v-col" sm="auto">
               <v-list bg-color="background">
@@ -194,7 +194,7 @@
                     <p class="text-capitalize body-1">{{permission.name}}:</p>
                     <v-row class="ma-0 pl-5" align="center" justify="space-between">
                       <v-col cols="9" class="pa-1">
-                        {{$translate('super-admin-rules-manage-roles-list-item-read',{name: permission.name})}}
+                        {{$t('super-admin-rules-manage-roles-list-item-read',{name: permission.name})}}
                       </v-col>
                       <v-col cols="auto" class="pa-1">
                         <v-checkbox 
@@ -207,7 +207,7 @@
                         ></v-checkbox>
                       </v-col>
                       <v-col cols="9" class="pa-1">
-                        {{$translate('super-admin-rules-manage-roles-list-item-write',{name: permission.name})}}
+                        {{$t('super-admin-rules-manage-roles-list-item-write',{name: permission.name})}}
                       </v-col>
                       <v-col cols="auto" class="pa-1">
                         <v-checkbox 
@@ -240,7 +240,7 @@
                       @click="() => {toggle()}"
                       color="primary"
                     >
-                      {{$translate('button-save')}}
+                      {{$t('button-save')}}
                     </v-btn>
                   </template>
                 </dialogs-confirm>
@@ -253,10 +253,10 @@
         <p class="text-error text-h5">Danger Zone</p>
       </v-col>
 
-      <app-templates-section class="add-permissions" cols="12" :card-title="$translate('super-admin-rules-add-permissions-title')" title-color="error">
+      <app-templates-section class="add-permissions" cols="12" :card-title="$t('super-admin-rules-add-permissions-title')" title-color="error">
         <ul class="pl-7">
-          <li class="text-error">{{$translate('super-admin-rules-add-permissions-subtitle-1')}}</li>
-          <li class="text-error">{{$translate('super-admin-rules-add-permissions-subtitle-2')}}</li>
+          <li class="text-error">{{$t('super-admin-rules-add-permissions-subtitle-1')}}</li>
+          <li class="text-error">{{$t('super-admin-rules-add-permissions-subtitle-2')}}</li>
         </ul>
         <v-row class="ma-0 mt-2" align="center">
           <v-col cols="12" sm="auto">
@@ -264,7 +264,7 @@
               v-model="new_permission_name"
               hide-details
               variant="solo"
-              :label="$translate('super-admin-rules-add-permissions-name')"
+              :label="$t('super-admin-rules-add-permissions-name')"
             ></v-text-field>
           </v-col>
           <v-col cols="6" sm="auto" class="d-flex justify-center align-center">
@@ -274,7 +274,7 @@
               hide-details
               density="comfortable"
               class="mx-1"
-              :label="$translate('super-admin-rules-add-permissions-read')"
+              :label="$t('super-admin-rules-add-permissions-read')"
               false-icon="fa-solid fa-square-xmark"
               true-icon="fa-solid fa-square-check"
             ></v-checkbox>
@@ -284,7 +284,7 @@
               hide-details
               density="comfortable"
               class="mx-1"
-              :label="$translate('super-admin-rules-add-permissions-write')"
+              :label="$t('super-admin-rules-add-permissions-write')"
               false-icon="fa-solid fa-square-xmark"
               true-icon="fa-solid fa-square-check"
             ></v-checkbox>
@@ -299,16 +299,16 @@
                 class="ma-2 ml-0"
                 color="primary"
               >
-                {{$translate('button-save')}}
+                {{$t('button-save')}}
               </v-btn>
             </template>
           </dialogs-confirm>
         </v-row>
       </app-templates-section>
 
-      <app-templates-section class="remove-permissions" cols="12" :card-title="$translate('super-admin-rules-remove-permissions-title')" title-color="error">
+      <app-templates-section class="remove-permissions" cols="12" :card-title="$t('super-admin-rules-remove-permissions-title')" title-color="error">
         <ul class="pl-7">
-          <li class="text-error">{{$translate('super-admin-rules-remove-permissions-subtitle-1')}}</li>
+          <li class="text-error">{{$t('super-admin-rules-remove-permissions-subtitle-1')}}</li>
         </ul>
         <v-radio-group class="py-2 pt-4" v-model="remove_permission_name" hide-details>
           <v-radio 
@@ -331,15 +331,15 @@
                 class="ma-2 ml-0"
                 color="primary"
               >
-                {{$translate('button-remove')}}
+                {{$t('button-remove')}}
               </v-btn>
             </template>
           </dialogs-confirm>
         </v-row>
       </app-templates-section>
 
-      <app-templates-section class="manage-permissions" cols="12" :card-title="$translate('super-admin-rules-manage-permissions-title')" title-color="error">
-        <v-label class="px-1 text-wrap text-error">{{$translate('super-admin-rules-manage-permissions-subtitle')}}</v-label>
+      <app-templates-section class="manage-permissions" cols="12" :card-title="$t('super-admin-rules-manage-permissions-title')" title-color="error">
+        <v-label class="px-1 text-wrap text-error">{{$t('super-admin-rules-manage-permissions-subtitle')}}</v-label>
         <v-list bg-color="background" class="pl-0">
           <v-list-item
             v-for="(item, index) in permissions"
@@ -352,7 +352,7 @@
                   v-model="item.name"
                   hide-details
                   variant="solo"
-                  :label="$translate('super-admin-rules-add-permissions-name')"
+                  :label="$t('super-admin-rules-add-permissions-name')"
                 ></v-text-field>
               </v-col>
               <v-col cols="6" sm="auto" class="d-flex justify-center align-center">
@@ -362,7 +362,7 @@
                   hide-details
                   density="comfortable"
                   class="mx-1"
-                  :label="$translate('super-admin-rules-add-permissions-read')"
+                  :label="$t('super-admin-rules-add-permissions-read')"
                   false-icon="fa-solid fa-square-xmark"
                   true-icon="fa-solid fa-square-check"
                 ></v-checkbox>
@@ -372,7 +372,7 @@
                   hide-details
                   density="comfortable"
                   class="mx-1"
-                  :label="$translate('super-admin-rules-add-permissions-write')"
+                  :label="$t('super-admin-rules-add-permissions-write')"
                   false-icon="fa-solid fa-square-xmark"
                   true-icon="fa-solid fa-square-check"
                 ></v-checkbox>
@@ -380,7 +380,7 @@
             </v-row>
             <template #append>
               <dialogs-confirm :success-handler="() => {removePermissionItem(item)}">
-              <template #label>{{$translate('super-admin-rules-manage-permissions-remove-label')}}</template>
+              <template #label>{{$t('super-admin-rules-manage-permissions-remove-label')}}</template>
                 <template #activator="{toggle}">
                   <v-btn
                     @click="() => {toggle()}"
@@ -396,14 +396,14 @@
         </v-list>
           <v-row class="ma-0 pr-2 pb-2" align="center" justify="end">
             <dialogs-confirm :success-handler="managePermissions">
-              <template #label>{{$translate('super-admin-rules-manage-permissions-save-label')}}</template>
+              <template #label>{{$t('super-admin-rules-manage-permissions-save-label')}}</template>
               <template #activator="{toggle}">
                 <v-btn
                   :loading="manage_permissions_loading"
                   @click="() => {toggle()}"
                   color="primary"
                 >
-                  {{$translate('button-save')}}
+                  {{$t('button-save')}}
                 </v-btn>
               </template>
             </dialogs-confirm>

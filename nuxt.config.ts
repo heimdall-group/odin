@@ -19,7 +19,8 @@ const config = defineNuxtConfig({
   },
   modules: [
     '@pinia/nuxt',
-    'nuxt-security',
+    'nuxt-scheduler',
+    // 'nuxt-security',
   ],
   pinia: {
     autoImports: ['defineStore']
@@ -51,11 +52,17 @@ const config = defineNuxtConfig({
     S3_OBJECT_URL: process.env.PRODUCTION === '1' ? process.env.PRODUCTION_S3_OBJECT_URL : process.env.DEVELOPMENT_S3_OBJECT_URL,
   },
   security: {
-    // Options
+    // Replace with route specific for /api/v1/upload
     xssValidator: false,
+    headers: {
+      crossOriginResourcePolicy: false,
+    },
   },
   nitro: {
-    plugins: ['~/server/index.ts'],
+    plugins: [
+      '~/server/index.ts',
+      // '~/server/plugins/scheduler.ts'
+    ],
     output: {
       dir: path.join(__dirname, `./.output/${outputPath}/website`),
       serverDir: path.join(__dirname, `./.output/${outputPath}/website/server`),

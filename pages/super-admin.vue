@@ -20,5 +20,5 @@
 </script>
 
 <template>
-  <NuxtPage v-if="Object.keys(user).length > 0"></NuxtPage>
+  <NuxtPage v-if="Object.keys(user).length > 0 && user.super_admin"></NuxtPage>
 </template>

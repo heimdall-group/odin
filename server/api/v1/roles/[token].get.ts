@@ -9,6 +9,9 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
 
     const token = event.context.params.token;
     const { data, success, error } = await getPermissionsObject(token)
+    if (!success || !data) {
+      throw 'Failed to get permissions'
+    }
     const { super_admin } = data;
 
     if (!super_admin) {

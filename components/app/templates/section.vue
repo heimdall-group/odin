@@ -63,7 +63,7 @@
     :xl="xl"
     :xxl="xxl"
     :title="title"
-    class="v-col pa-0"
+    class="v-col pa-2"
     :class="{
       'closable': modelValue !== undefined,
       'open': value,

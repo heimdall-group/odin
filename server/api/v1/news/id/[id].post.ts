@@ -9,10 +9,13 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
     const id = event.context.params.id;
     const { token } = await readBody(event);
 
-    const { data, success, error } = await getPermissionsObject(token, true);
-    const { permissions, member, super_admin } = data;
+    const { data, success, error } = await getPermissionsObject(token ? token : '');
+    if (!success || !data) {
+      throw 'Failed to get permissions'
+    }
+    const { permissions, member, super_admin, external } = data;
 
-    if ((permissions['internal-news'] === undefined || !permissions['internal-news'].read) && !super_admin) {
+    if ((permissions['internal-news'] === undefined || !permissions['internal-news'].read) && !super_admin && !external) {
       throw 'Permission denied'
     }
 
@@ -54,11 +57,16 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
           date: '$date',
           internal: '$internal',
           external: '$external',
+          summary: '$summary',
         }
       }
     ])
 
-    if (document[0] && (document[0].internal && !permissions['internal-news'].read)) {
+    if (document.length === 0) {
+      throw 'Couldnt find article'
+    }
+
+    if (external && document[0].internal) {
       throw 'Permission denied'
     }
 
@@ -68,7 +76,6 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
       success: true,
     }, event);
   } catch (error: any) {
-    console.log(error)
     throw createError({
       statusCode: 400,
       statusMessage: error,

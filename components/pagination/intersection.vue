@@ -1,21 +1,25 @@
 <script setup lang="ts">
   const props = defineProps({
-    'handler': {
+    handler: {
+      type: Function,
+      required: true,
+    },
+    cache: {
       type: Object,
       required: true,
-    }
+    },
   })
 
   const onIntersect = (intersecting: boolean) => {
     if (intersecting) {
-      props.handler.handler();
+      props.handler();
     }
   };
 </script>
 
 <template>
   <div
-    v-if="handler.cache && !handler.cache.completed"
+    v-if="cache && !cache.completed"
     class="pagination pagination-intersection w-100"
     v-intersect="{
       handler: onIntersect,

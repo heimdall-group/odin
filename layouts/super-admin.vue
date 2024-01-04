@@ -1,5 +1,6 @@
 <template>
   <super-admin-navigation />
-  <div class="pa-8"></div>
-  <slot></slot>
+  <v-main>
+    <slot></slot>
+  </v-main>
 </template>

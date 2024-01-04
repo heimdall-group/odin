@@ -24,6 +24,12 @@ export const useStore = defineStore('main', {
       this.user = Object.assign(this.user, user)
     },
     getPermissions(key: string):Permission {
+      if (this.user.super_admin) {
+        return {
+          read: true,
+          write: true,
+        }
+      }
       if (Object.keys(this.user).length === 0) {
         return {
           read: false,

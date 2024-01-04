@@ -9,7 +9,6 @@
 
 <template>
   <v-card
-    color="background-700"
     variant="outlined"
     flat
   >
@@ -18,7 +17,7 @@
         <v-card-title class="text-white">{{article.title}}</v-card-title>
         <v-card-subtitle class="text-white mb-4">
           {{article.author.nickname}} |
-          {{new Date(article.date).toDateString()}}
+          {{$d(article.date)}}
         </v-card-subtitle>
         <v-card-text class="text-white" v-html="$md_render(article.body)"></v-card-text>
       </v-col>
@@ -29,7 +28,7 @@
           class="font-weight-bold mx-2"
           variant="text"
         >
-          {{$translate('news-read-more')}}
+          {{$t('news-read-more')}}
         </v-btn>
       </v-col>
     </v-row>

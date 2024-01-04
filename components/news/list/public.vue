@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  const news = ref([] as Array<News>);
-  const cache:usePaginationCache = reactive({limit: 6});
   const props = defineProps({
     'href': {
       type: String,
@@ -11,12 +9,14 @@
       required: false,
       default: false,
     }
-  })
+  });
+  const news = ref([] as Array<News>);
+  const cache:usePaginationCache = reactive({limit: props.pagination ? 10 : 6});
 
   const { data, pending, refresh } = await useAsyncData('list-public-news', () => usePagination({
     url: `/api/v1/news/articles/public`,
     cache: cache,
-    excluded_keys: ['body']
+    remove: ['body', 'summary']
   }, news));
 </script>
 

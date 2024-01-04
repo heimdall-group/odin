@@ -3,7 +3,7 @@
     modelValue: {
       type: String,
       required: true,
-    }
+    },
   })
   
   const emits = defineEmits(['update:modelValue'])
@@ -24,10 +24,10 @@
   <section>
     <v-row class="mb-0">
       <v-col cols="6" class="d-flex justify-center">
-        <v-btn class="text-white" :active="editor" @click="editor = true" variant="text">{{$translate('markdown-editor')}}</v-btn>
+        <v-btn class="text-white" :active="editor" @click="editor = true" variant="text">{{$t('markdown-editor')}}</v-btn>
       </v-col>
       <v-col cols="6" class="d-flex justify-center">
-        <v-btn class="text-white" :active="!editor" @click="editor = false" variant="text">{{$translate('markdown-preview')}}</v-btn>
+        <v-btn class="text-white" :active="!editor" @click="editor = false" variant="text">{{$t('markdown-preview')}}</v-btn>
       </v-col>
     </v-row>
     <markdown-editor v-if="editor" v-model="value" />

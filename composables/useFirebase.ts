@@ -23,7 +23,9 @@ export const firebase_initialize_authentication: Function = async ():Promise<voi
 
             if (ENVIRONMENT.toString().trim() !== 'app') {
               if (720000 > remainingTime) {
+                console.log(remainingTime)
                 console.log('less then 12 hours left')
+                setTimeout(() => {signOut(auth);store.setGlobalLoading(false)}, remainingTime)
               } else {
                 console.log('more left then 12 hours')
               }

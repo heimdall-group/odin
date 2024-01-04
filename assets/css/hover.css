@@ -1,0 +1,41 @@
+.hover-parent .hover-target {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: 250ms, 250ms;
+}
+
+.hover-parent:hover .hover-target {
+    opacity: 1;
+}
+
+.hover-parent .hover-transition-slide-x-reverse {
+    transform: translateX(50px);
+}
+
+.hover-parent .hover-transition-slide-x {
+    transform: translateX(-50px);
+}
+
+.hover-parent:hover .hover-transition-slide-x-reverse {
+    transform: translateX(0px);
+}
+
+.hover-parent:hover .hover-transition-slide-x {
+    transform: translateX(0px);
+}
+
+.hover-parent .hover-transition-slide-y-reverse {
+    transform: translateY(50px);
+}
+
+.hover-parent .hover-transition-slide-x {
+    transform: translateY(-50px);
+}
+
+.hover-parent:hover .hover-transition-slide-x-reverse {
+    transform: translateY(0px);
+}
+
+.hover-parent:hover .hover-transition-slide-x {
+    transform: translateY(0px);
+}

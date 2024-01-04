@@ -58,7 +58,7 @@ npm run build
 
 Vue global properties:
   - $locale: An object with different properties. All types are defined under models/locale.model.ts
-  - $translate: Translates the provided key parameter into the corresponding value defined in locale/(Language tag).json
+  - $t: Translates the provided key parameter into the corresponding value defined in locale/(Language tag).json
     - To add a new language create a Json file and import it into plugins/locale.ts and add it to the translations object. The import name / key provided in the object will be used as a visual representation of the language
     - When defining a translation it can either a string or an object. ADD MORE NOTES HERE
   - $changeLocale: 

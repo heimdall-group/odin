@@ -1,5 +1,7 @@
 <template>
   <app-navigation />
-  <div class="pa-8"></div>
-  <slot></slot>
-</template>
+  <v-main>
+    <slot></slot>
+  </v-main>
+  <app-footer></app-footer>
+</template> 

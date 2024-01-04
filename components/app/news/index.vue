@@ -11,7 +11,7 @@
 <template>
   <v-container>
     <template v-if="internalPermissions.read">
-      <app-templates-title class="mt-8" :card-title="$translate('app-section-title-internal-news')" title-color="white">
+      <app-templates-title class="mt-8" :card-title="$t('app-section-title-internal-news')" title-color="white">
         <v-btn
           color="secondary"
           :ripple="false"
@@ -19,13 +19,13 @@
           variant="text"
           to="/app/news/internal"
         >
-          {{$translate('news-view-all')}}
+          {{$t('news-view-all')}}
         </v-btn>
       </app-templates-title>
       <news-list-internal />
     </template>
     <template v-if="publicPermissions.read">
-      <app-templates-title class="mt-4" :card-title="$translate('app-section-title-public-news')" title-color="white">
+      <app-templates-title class="mt-4" :card-title="$t('app-section-title-public-news')" title-color="white">
         <v-btn
           color="secondary"
           :ripple="false"
@@ -33,7 +33,7 @@
           variant="text"
           to="/app/news/public"
         >
-          {{$translate('news-view-all')}}
+          {{$t('news-view-all')}}
         </v-btn>
       </app-templates-title>
       <news-list-public href="/app/news/public" />

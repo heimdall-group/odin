@@ -14,8 +14,8 @@
       :key="`default-navigation-append-${index}`"
       :prepend-icon="link.icon"
     >
-      <v-btn block rounded="lg" :href="link.href">
-        {{$translate(link.key)}}
+      <v-btn block rounded="lg" target="_blank" :href="link.href">
+        {{$t(link.key)}}
       </v-btn>
     </v-list-item>
     <v-list-item

@@ -8,6 +8,9 @@ export default defineEventHandler(async (event): Promise<PaginationReturn> => {
 
     const token = event.context.params.token;
     const { data, success, error } = await getPermissionsObject(token);
+    if (!success || !data) {
+      throw 'Failed to get permissions'
+    }
     const { permissions, super_admin } = data;
 
     if ((permissions['internal-news'] === undefined || !permissions['internal-news'].read) && !super_admin) {
@@ -70,6 +73,7 @@ export default defineEventHandler(async (event): Promise<PaginationReturn> => {
           date: '$date',
           internal: '$internal',
           external: '$external',
+          summary: '$summary',
         }
       }
     ])

@@ -2,19 +2,19 @@ import { getAuth } from 'firebase-admin/auth';
 import Users from "../models/users";
 import Keys from "../models/keys";
 
-export default async (token: string, isPublic: boolean = false):Promise<Return> => {
+export default async (token: string):Promise<PermissionsObject> => {
   try {
     if (token === undefined) {
       throw 'Missing Token'
     }
-
-    if(token === '' && isPublic) {
+    if(token === '') {
       return {
         data: {
-          user: {},
+          user: '',
           member: false,
           super_admin: false,
           permissions: {},
+          external: true,
         },
         success: true,
       }
@@ -34,7 +34,7 @@ export default async (token: string, isPublic: boolean = false):Promise<Return> 
   }
 }
 
-export const getFirebasePermissionsObject = async (token: string):Promise<Return> => {
+export const getFirebasePermissionsObject = async (token: string):Promise<PermissionsObject> => {
   try {
     const result = await getAuth().verifyIdToken(token);
     const document = await Users.aggregate([
@@ -68,10 +68,9 @@ export const getFirebasePermissionsObject = async (token: string):Promise<Return
 
     const roles:Array<Role> = document[0].roles
     const permissions = mergeRolePermissions(roles);
-
     return {
       data: {
-        user: result,
+        user: result.uid,
         member: document[0].member,
         super_admin: document[0].super_admin,
         permissions: permissions,
@@ -86,9 +85,21 @@ export const getFirebasePermissionsObject = async (token: string):Promise<Return
   }
 }
 
-export const getAccessPermissionsObject = async (token: string):Promise<Return> => {
+export const getAccessPermissionsObject = async (token: string):Promise<PermissionsObject> => {
   try {
     const keyUser = await Keys.findOne({})
+
+    // placeholder: 
+    return {
+      data: {
+        user: '',
+        member: false,
+        super_admin: false,
+        permissions: {},
+        external: true,
+      },
+      success: true,
+    }
   } catch (error: any) {
     return {
       success: false,

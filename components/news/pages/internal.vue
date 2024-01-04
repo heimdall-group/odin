@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <news-pages-template v-if="internal_news.read" :name="$translate('app-news-list-internal')">
+  <news-pages-template v-if="internal_news.read" :name="$t('app-news-list-internal')">
     <news-list-internal :pagination="true" />
   </news-pages-template>
   <v-container v-else class="fill-height">

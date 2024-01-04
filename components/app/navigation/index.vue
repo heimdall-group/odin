@@ -3,9 +3,11 @@
   import { useStore } from '~/stores/main';
 
   const viewsStore = useViewsStore();
+  const store = useStore();
   const width = computed(() => viewsStore.getWidth);
 
-  const user = computed(() => useStore().getUser)
+  const user = computed(() => store.getUser)
+  const event_application = computed(() => store.getPermissions('event-application'))
 
   const drawer = ref(false);
 </script>
@@ -28,27 +30,32 @@
       <v-list>
         <v-list-item>
           <v-btn block rounded="lg" exact to="/app">
-            {{$translate('app-navigation-dashboard')}}
+            {{$t('app-navigation-dashboard')}}
           </v-btn>
         </v-list-item>
         <v-list-item>
           <v-btn block rounded="lg" to="/app/news">
-            {{$translate('app-navigation-news')}}
+            {{$t('app-navigation-news')}}
           </v-btn>
         </v-list-item>
-        <v-list-item disabled>
+        <v-list-item>
           <v-btn block rounded="lg" to="/app/events">
-            {{$translate('app-navigation-events')}}
+            {{$t('app-navigation-events')}}
+          </v-btn>
+        </v-list-item>
+        <v-list-item v-if="event_application.read">
+          <v-btn block rounded="lg" to="/app/events/applications">
+            {{$t('app-navigation-events-applications')}}
           </v-btn>
         </v-list-item>
         <v-list-item disabled>
           <v-btn block rounded="lg" to="/app/jobs">
-            {{$translate('app-navigation-jobs')}}
+            {{$t('app-navigation-jobs')}}
           </v-btn>
         </v-list-item>
         <v-list-item disabled>
           <v-btn block rounded="lg" to="/app/market">
-            {{$translate('app-navigation-market')}}
+            {{$t('app-navigation-market')}}
           </v-btn>
         </v-list-item>
       </v-list>
@@ -56,7 +63,7 @@
     <template v-slot:append>
       <v-list>
         <v-list-item>
-          <v-btn block rounded="lg" @click="firebase_signout">{{$translate('navigation-settings-signout')}}</v-btn>
+          <v-btn block rounded="lg" @click="firebase_signout">{{$t('navigation-settings-signout')}}</v-btn>
         </v-list-item>
         <v-list-item>
           <dialogs-settings />

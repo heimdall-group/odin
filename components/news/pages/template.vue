@@ -26,7 +26,7 @@
           <template #prepend>
             <font-awesome-icon icon="fa-solid fa-plus" />
           </template>
-          {{ $translate('app-create-news') }}
+          {{ $t('app-create-news') }}
         </v-btn>
       </template>
     </navigation-sub-back-menu>

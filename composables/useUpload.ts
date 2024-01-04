@@ -42,4 +42,4 @@ export const uploadFiles = async (files: Array<File | null> | File | null): Prom
       error: error,
     }
   }
-} 
+}

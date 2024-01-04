@@ -16,6 +16,22 @@ declare global {
     url?: string,
   }
 
+  interface PermissionsObject extends Return {
+    data?: {
+      user: string,
+      member: boolean,
+      super_admin: boolean,
+      permissions: {
+        [key: string]: {
+          read: boolean;
+          write: boolean;
+          name?: string;
+        }
+      },
+      external?: boolean,
+    }
+  }
+
   interface Throw_Error {
     message: string,
     // section/error

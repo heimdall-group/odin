@@ -28,7 +28,7 @@
   <v-row class="my-0" align="start">
     <template v-if="cache.empty">
       <v-row class="ma-0 news-list-empty" justify="center" align="center">
-        <h3 class="font-weight-regular">{{ $translate('news-empty') }}</h3>
+        <h3 class="font-weight-regular">{{ $t('news-empty') }}</h3>
       </v-row>
     </template>
     <template
@@ -40,7 +40,7 @@
         <news-list-item :href="href + `/${article.id}`" :article="article" />
       </v-col>
     </template>
-    <pagination-intersection v-if="pagination" :handler="{handler: pagination, cache}"  />
+    <pagination-intersection v-if="pagination" :handler="pagination" :cache="cache"  />
   </v-row>
 </template>
 

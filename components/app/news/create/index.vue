@@ -4,12 +4,10 @@
   const store = useStore();
   const public_news = computed(() => store.getPermissions('public-news'));
   const internal_news = computed(() => store.getPermissions('internal-news'));
-
 </script>
 
 <template>
   <v-container>
-    <navigation-sub-back-menu :name="$translate('app-create-news')" />
     <app-news-create-public-internal v-if="public_news.write && internal_news.write" />
     <template v-else>
       <app-news-create-public v-if="public_news.write" />

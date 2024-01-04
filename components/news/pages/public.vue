@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <news-pages-template :name="$translate(route.fullPath.includes('/app/') ? 'app-news-list-public' : 'news-list-public')">
+  <news-pages-template :name="$t(route.fullPath.includes('/app/') ? 'app-news-list-public' : 'news-list-public')">
     <news-list-public href="/information/news" :pagination="true" />
   </news-pages-template>
 </template>

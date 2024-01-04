@@ -18,7 +18,7 @@
       <v-progress-circular indeterminate :size="40" :width="2"></v-progress-circular>
     </v-row>
   </v-app>
-  <v-app v-else>
+  <v-app full-height v-else>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -30,12 +30,32 @@
 @import url(~/assets/css/loaders.css);
 @import url(~/assets/css/cursors.css);
 @import url(~/assets/css/selects.css);
-@import url(~/assets/css/grid.css);
+@import url(~/assets/css/hover.css);
 @import '@felixrydberg/discord-markdown';
 
 * {
   font-family: 'Quicksand';
   text-transform: unset !important;
+}
+
+.v-application {
+  min-height: calc(100vh + 192px);
+}
+
+.v-application .v-main > .v-container {
+  min-height: calc(100vh - 64px);
+}
+
+.v-container {
+  overflow-x: hidden;
+}
+
+.v-sheet.bg-background.v-sheet--border {
+  border-color: rgba(var(--v-theme-border-color));
+}
+
+.v-footer {
+  height: calc(192px) !important;
 }
 
 .v-btn[class^='font-weight-'] .v-btn__content {
@@ -44,7 +64,7 @@
 
 html {
   touch-action: manipulation;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   width: 100vw;
 }
 
@@ -85,19 +105,38 @@ html {
   margin: 0;
 }
 
+.v-list-item-check .v-icon.fa-solid,
+.v-list-item-check .v-icon.fa-regular,
 .v-checkbox .v-icon.fa-solid,
 .v-checkbox .v-icon.fa-regular {
   font-size: calc(var(--v-icon-size-multiplier) * 1.4em);
   margin: -1px 0 0 0;
 }
 
+.v-list-item-check .v-icon.fa-square-xmark,
 .v-checkbox .v-icon.fa-square-xmark {
   color: rgb(var(--v-theme-error))
 }
 
+.v-list-item-check .v-icon.fa-square-check,
 .v-checkbox .v-icon.fa-square-check {
   color: rgb(var(--v-theme-success))
 }
+
+.v-date-picker .v-btn {
+  border-color: rgba(var(--v-border-color), var(--v-border-opacity));
+}
+
+.v-date-picker-month__day--selected .v-btn {
+  background-color: rgb(var(--v-theme-background-700));
+  color: rgb(var(--v-theme-on-background-700));
+}
+
+@media screen and (min-width: 1900px) {
+    .v-container.smaller-max-container {
+      max-width: 1192px;
+    }
+  }
 
 /* Scroll */
 

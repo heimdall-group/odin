@@ -8,6 +8,9 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
 
     const token = event.context.params.token;
     const { data, success, error } = await getPermissionsObject(token)
+    if (!success || !data) {
+      throw 'Failed to get permissions'
+    }
     const { permissions, user, super_admin } = data;
 
     if (
@@ -35,23 +38,27 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
       throw 'Missing external'
     }
     
+    
+
     const document = new News({
       title: title,
-      author: user.uid,
+      author: user,
       body: body,
       cover: cover,
       date: new Date().getTime(),
-      internal: permissions['internal-news'].write ? internal : false,
-      external: permissions['public-news'].write ? external : false,
+      internal: super_admin ? internal : permissions['internal-news'].write ? internal : false,
+      external: super_admin ? external : permissions['public-news'].write ? external : false,
+      summary: createNewsSummary(body),
     })
     document.save()
 
     return await removeRequestKeys({
-      data: true,
+      data: document._id,
       success: true,
       type: 'Standard',
     }, event);
   } catch (error: any) {
+    console.log(error)
     throw createError({
       statusCode: 400,
       statusMessage: error,

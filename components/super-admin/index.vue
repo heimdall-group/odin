@@ -11,5 +11,5 @@
   <v-container v-if="index">
   </v-container>
   <super-admin-roles v-else-if="roles" />
-  <div v-else>{{$translate('page-doesnt-exists')}}</div>
+  <div v-else>{{$t('page-doesnt-exists')}}</div>
 </template>

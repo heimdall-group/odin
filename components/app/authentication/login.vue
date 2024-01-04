@@ -52,7 +52,6 @@ import { useStore } from '~/stores/main';
   <v-container class="pa-0" fluid v-if="!signedIn">
     <v-row class="ma-0 fill-height" justify="center" align="center">
       <v-btn color="primary" :href="`${DISCORD_OAUTH_URL}&state=${sid}&environment=${ENVIRONMENT.toString().trim()}`">Login</v-btn>
-      <!-- <v-btn v-else-if="ENVIRONMENT.toString().trim() === 'app'" color="primary" @click="electronAuthentication">App Login</v-btn> -->
     </v-row>
   </v-container>
   <app-authentication-success-display v-else />

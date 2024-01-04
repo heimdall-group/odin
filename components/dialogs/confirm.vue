@@ -8,6 +8,16 @@
       type: Boolean,
       required: false,
     },
+    title: {
+      type: String,
+      required: false,
+      default: 'dialog-confirm-title',
+    },
+    label: {
+      type: String,
+      required: false,
+      default: 'dialog-confirm-label-default'
+    }
   })
   const emits = defineEmits(['update:modelValue'])
 
@@ -48,13 +58,13 @@
       class="text-center py-6"
       color="background-800"
     >
-      <v-card-title>{{$translate('dialog-confirm-title')}}</v-card-title>
-      <v-card-text>
-        <slot name="label">{{$translate('dialog-confirm-label-default')}}</slot>
+      <v-card-title class="text-white">{{$t(title)}}</v-card-title>
+      <v-card-text class="text-white">
+        {{$t(label)}}
       </v-card-text>
       <v-row class="ma-0 py-4" justify="center">
-        <v-btn color="error" variant="outlined" @click="toggle" class="mx-2">{{$translate('button-cancel')}}</v-btn>
-        <v-btn color="success" variant="outlined" @click="successHandler" class="mx-2">{{$translate('button-confirm')}}</v-btn>
+        <v-btn color="error" variant="outlined" @click="toggle" class="mx-2">{{$t('button-cancel')}}</v-btn>
+        <v-btn color="success" variant="outlined" @click="successHandler" class="mx-2">{{$t('button-confirm')}}</v-btn>
       </v-row>
     </v-card>
   </v-dialog>

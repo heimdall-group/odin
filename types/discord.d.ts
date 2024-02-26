@@ -1,4 +1,10 @@
 declare global {
+  interface AppCommand {
+    command: SlashCommandBuilder,
+    name: String,
+    handler: Function
+  }
+
   interface OAuth2_Result {
     token_type: string;
     access_token: string;

@@ -17,28 +17,38 @@ declare global {
   };
 
   interface AppEvent {
-    active: boolean,
+    status: 'planned' | 'active' | 'completed' | 'rescheduled',
     assignees: Array<Object>,
     author: string,
     date: Date,
     desc: string,
     external: boolean,
     interested: Array,
-    currentUserIsInterested: Boolean,
+    currentUserIsInterested: boolean,
     max_assignees: number,
     recurring: 'none' | 'weekly' | 'every-other-week' | 'monthly-first-current-day' | 'annually' | 'weekdays',
     title: string,
     type: string,
+    id: string,
   }
 
   interface AppEventApplication {
-    applicant: String,
-    role: String,
-    group: String,
-    event: String,
-    type: String,
+    applicant: string,
+    role: {
+      name: string,
+      id: string,
+    },
+    group: {
+      name: string,
+      id: string,
+    },
+    event: {
+      title: string,
+      id: string,
+    },
+    type: string,
     date: Date,
-    id: String,
+    id: string,
   }
 
   interface AppEventCombat extends AppEvent {

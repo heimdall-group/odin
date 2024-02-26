@@ -1,3 +1,4 @@
+import { REST } from 'discord.js';
 import News from '~/server/models/news';
 
 export default defineEventHandler(async (event): Promise<Server_Return> => {
@@ -26,7 +27,25 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
       throw 'Missing id'
     }
 
-    const document = await News.deleteOne({ _id: id })
+    const document = await News.findOne({ _id: id })
+    if (!document) {
+      throw 'Couldnt find article'
+    }
+
+    try {
+      const { DISCORD_BOT_TOKEN, DISCORD_SERVER_ID, DISCORD_NEWS_CHANNEL_ID } = useRuntimeConfig();
+      const { BASE_URL } = useRuntimeConfig().public;
+      const rest = new REST({ version: '10' }).setToken(DISCORD_BOT_TOKEN);
+      if (!document.message_ids || !document.message_ids.cover || !document.message_ids.body) {
+        throw 'Missing message ids'
+      }
+      await rest.delete(`/channels/${DISCORD_NEWS_CHANNEL_ID}/messages/${document.message_ids.cover}`)
+      await rest.delete(`/channels/${DISCORD_NEWS_CHANNEL_ID}/messages/${document.message_ids.body}`)
+    } catch(error) {
+      console.error(error);
+    }
+    document.deleteOne();
+    document.save();
 
     return await removeRequestKeys({
       data: document,

@@ -11,15 +11,28 @@ const removeAssignees = (assignees) => {
 }
 
 const reschedule = async (date, event) => {
-  event.date = date.toDate();
-  event.assignees = removeAssignees(event.assignees);
-  event.interested = [];
+  const newEvent = new Events({
+    status: 'planned',
+    assignees: removeAssignees(event.assignees),
+    author: event.author,
+    date: date.toDate(),
+    desc: event.desc,
+    external: event.external,
+    interested: [],
+    max_assignes: event.max_assignes,
+    recurring: event.recurring,
+    title: event.title,
+    type: event.type,
+  });
+  event.status = 'rescheduled';
   await event.save();
+  await newEvent.save();
 }
 
 export default async () => {
   const documents = await Events.find({
-    date: { $lte: new Date() }
+    date: { $lte: new Date() },
+    status: { $ne: ['rescheduled', 'active'] }
   })
 
   for (let i = 0; i < documents.length; i++) {
@@ -28,9 +41,9 @@ export default async () => {
     const date = moment(event.date);
     switch (recurring) {
       case "none":
-        event.deleteOne();
-        event.save();
-        break;
+        event.status = 'rescheduled';
+        await event.save();
+        break
       case "weekly":
         await reschedule(date.add('1', 'week'), event);
         break;
@@ -60,4 +73,6 @@ export default async () => {
         break;
     }
   }
+
+  console.log(`Events-Rechedule: Found ${documents.length}`);
 }

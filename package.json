@@ -24,7 +24,7 @@
     "@types/node": "^18.17.3",
     "electron": "^27.0.4",
     "electron-builder": "^24.6.4",
-    "nuxt": "^3.6.5",
+    "nuxt": "3.9",
     "nuxt-scheduler": "^0.1.9",
     "typescript": "latest"
   },
@@ -38,6 +38,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@pinia/nuxt": "^0.4.11",
+    "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
     "electron-serve": "^1.2.0",
     "firebase": "^9.23.0",

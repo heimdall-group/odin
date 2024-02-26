@@ -1,7 +1,6 @@
 {
   "language": "English",
   "page-doesnt-exists": "Page doesnt exists",
-
   "button-save": "Save",
   "button-confirm": "Confirm",
   "button-cancel": "Cancel",
@@ -10,12 +9,9 @@
   "button-back": "Back",
   "button-next": "Next",
   "button-upload-image": "Upload image",
-
   "helper-text-optional": "Optional",
-
   "dialog-confirm-title": "Confirm action",
   "dialog-confirm-label-default": "Are you sure you want to do this?",
-
   "navigation-title": "Asgard",
   "navigation-home": "Home",
   "navigation-about-us": "About us",
@@ -29,13 +25,11 @@
   "navigation-our-youtube": "Our Youtube",
   "navigation-settings": "Settings",
   "navigation-settings-signout": "Sign out",
-
   "home-join-us": "Join us" ,
   "home-our-rules": "Our rules" ,
   "home-about-us": "About us" ,
   "home-sign-in": "Sign in here" ,
   "home-start-app": "Launch app" ,
-
   "join-us-sign-in-with-discord": "Sign in with Discord",
   "join-us-title": "Think about this before you apply:",
   "join-us-list-rules": {
@@ -56,27 +50,19 @@
     "href": "https://discord.com/invite/zs5humSzF7",
     "prepend": "."
   },
-
-
   "markdown-editor": "Editor",
   "markdown-preview": "Preview",
-
-
   "app-section-title-public-news": "Public articles",
   "app-section-title-internal-news": "Internal articles",
-
   "app-navigation-dashboard": "Dashboard",
   "app-navigation-news": "News",
   "app-navigation-events": "Events",
   "app-navigation-events-applications": "Event applications",
   "app-navigation-jobs": "Assignments",
   "app-navigation-market": "Market",
-
-
   "news-list-public": "All articles",
   "app-news-list-public": "All public articles",
   "app-news-list-internal": "All internal articles",
-
   "news-view-all": "View all",
   "news-publish-type": "Publishing type",
   "news-read-more": "Read more",
@@ -93,8 +79,6 @@
   "news-edit-names-cover": "Article cover",
   "news-edit-names-internal": "Interal publishing",
   "news-edit-names-external": "Public publishing",
-
-
   "app-create-news": "Create news",
   "app-edit-news": "Edit article",
   "app-create-public-news": "Create public news",
@@ -105,8 +89,7 @@
   "app-create-news-preview-picture": "Preview cover image",
   "app-create-news-publish-public": "Publish as Public",
   "app-create-news-publish-internal": "Publish as Internal",
-
-
+  "app-create-news-mentions": "Ping these ids (Separate with a space)",
   "app-create-event": "Create event",
   "app-create-event-title-label": "Event title",
   "app-create-event-title-label-error": "Title required",
@@ -114,18 +97,26 @@
   "app-create-event-desc-label-error": "Description required",
   "app-create-event-checkbox-public": "Publish event",
   "app-create-event-checkbox-include-groups": "Include groups",
+  "app-event-title": "Events",
   "app-event-active": "Active",
+  "app-event-completed": "Completed",
+  "app-event-upcoming": "Upcoming",
   "app-event-reserve": "Reserve",
-  "app-event-application-title": "Send application",
+  "app-event-empty": "No events",
+  "app-event-application-title": "Applications",
+  "app-event-application-dialog-title": "Send application",
   "app-event-application-label": "This role requires approval, would you like to send in your application?",
   "app-event-application-empty": "No applications at this time",
+  "app-event-application-read-more": "Read more",
+  "app-event-application-revoke": "Deny",
+  "app-event-application-pledge": "Accept",
+  "app-event-application-applies": "applies for",
   "app-event-types-label": "Event type",
   "app-event-types-combat": "Combat",
   "app-event-types-industry": "Industry",
   "app-event-types-social": "Social",
   "app-event-calender-read-more": "Read more",
   "app-event-calender-interested": "Interested",
-  
   "app-event-recurring-type-label": "Schedule",
   "app-event-recurring-type-none": "None",
   "app-event-recurring-type-weekly": "Every week",
@@ -133,52 +124,40 @@
   "app-event-recurring-type-monthy-first-current-day": "First {date} every month",
   "app-event-recurring-type-annually": "Annually",
   "app-event-recurring-type-weekdays": "Weekdays",
-
   "app-create-event-combat-groups-title": "Military squadrons",
-
   "app-create-event-combat-group-title": "Group",
   "app-create-event-combat-group-label": "Group name",
   "app-create-event-combat-group-label-error": "Group name required",
   "app-create-event-combat-application": "Application",
-
   "app-event-combat-types-label": "Squad type",
   "app-event-combat-types-air": "Air",
   "app-event-combat-types-ground": "Ground",
   "app-event-combat-types-mechanised": "Mechanised",
-
   "app-create-event-combat-roles-label": "Roles",
   "app-create-event-combat-roles-add-label": "Add role",
   "app-create-event-combat-roles-missing": "No roles added",
   "app-create-event-combat-roles-title": "Role name",
   "app-create-event-combat-roles-title-error": "Role name required",
-
   "app-create-event-combat-group-chief": "Group-Cheif",
   "app-create-event-combat-xo": "Executive Officer",
   "app-create-event-combat-troop": "Troop",
   "app-create-event-combat-custom": "Custom",
-
-
   "super-admin-navigation-home": "Hem",
   "super-admin-navigation-roles": "Roller",
-
   "super-admin-rules-manage-roles-title": "Manage Roles",
   "super-admin-rules-manage-roles-list-item-read": "Permission to read {name}",
   "super-admin-rules-manage-roles-list-item-write": "Permission to write {name}",
-
   "super-admin-rules-manage-permissions-title": "Manage Permissions",
   "super-admin-rules-manage-permissions-subtitle": "Changing permissions can have major consequence. Changes here will apply to all roles.",
   "super-admin-rules-manage-permissions-save-label": "All values and names will be overwritten to reflect what has been filled in here.",
   "super-admin-rules-manage-permissions-remove-label": "This permission will be removed upon saving.",
-
   "super-admin-rules-add-permissions-title": "Add Permissions",
   "super-admin-rules-add-permissions-subtitle-1": "Added permissions will be applied to all roles.",
   "super-admin-rules-add-permissions-subtitle-2": "Permissions names needs to be in english.",
   "super-admin-rules-add-permissions-name": "Name",
   "super-admin-rules-add-permissions-read": "Read",
   "super-admin-rules-add-permissions-write": "Write",
-
   "super-admin-rules-remove-permissions-title": "Remove Permissions",
   "super-admin-rules-remove-permissions-subtitle-1": "Removed permissions will be removed to all roles.",
-
   "": "" 
 }

@@ -1,5 +1,6 @@
 import Events from '~/server/models/events';
 import mongoose from 'mongoose'
+import { REST } from 'discord.js';
 
 export default defineEventHandler(async (event): Promise<Server_Return> => {
   try {
@@ -7,7 +8,7 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
       throw 'Missing parameters'
     }
     const token = event.context.params.token;
-    const { assignees, date, desc, interested, recurring, max_assignes, external, title, type } = await readBody(event);
+    const { assignees, date, desc, status, interested, recurring, max_assignes, external, title, type } = await readBody(event);
     if (date === undefined) {
       throw 'Missing date'
     }
@@ -48,7 +49,7 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
     }
 
     const document = new Events({
-      active: false,
+      status: status ? status : 'planned',
       assignees: assignees ? assignees : [],
       author: user,
       date,
@@ -59,7 +60,24 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
       external,
       title,
       type
-    })
+    });
+
+    const { DISCORD_BOT_TOKEN, DISCORD_SERVER_ID, DISCORD_EVENTS_CHANNEL_ID } = useRuntimeConfig();
+    const { BASE_URL } = useRuntimeConfig().public;
+    const rest = new REST({ version: '10' }).setToken(DISCORD_BOT_TOKEN);
+
+    // const result:any = await rest.post(`/guilds/${DISCORD_SERVER_ID}/scheduled-events`, {
+    const result:any = await rest.post(`/guilds/1141789491766513694/scheduled-events`, {
+      body: {
+        channel_id: DISCORD_EVENTS_CHANNEL_ID,
+        name: document.title,
+        description: document.desc,
+        privacy_level: 2,
+        entity_type: 2,
+        scheduled_start_time: document.date,
+      }
+    });
+    document.guild_scheduled_event_id = result.id
     document.save();
 
     return removeRequestKeys({
@@ -68,6 +86,7 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
       success: true,
     }, event);
   } catch (error: any) {
+    console.log(error)
     throw createError({
       statusCode: 400,
       statusMessage: error,

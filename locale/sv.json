@@ -1,7 +1,6 @@
 {
   "language": "Svenska",
   "page-doesnt-exists": "Sidan finns ej",
-
   "button-save": "Spara",
   "button-confirm": "Bekräfta",
   "button-cancel": "Avbryt",
@@ -10,12 +9,9 @@
   "button-back": "Tillbaka",
   "button-next": "Nästa",
   "button-upload-image": "Ladda upp bild",
-
   "helper-text-optional": "Frivilligt",
-  
   "dialog-confirm-title": "Bekräfta handling",
   "dialog-confirm-label-default": "Är du säker på att du vill göra detta?",
-
   "navigation-title": "Asgard",
   "navigation-home": "Startsida",
   "navigation-about-us": "Om oss",
@@ -29,13 +25,11 @@
   "navigation-our-youtube": "Vår Youtube",
   "navigation-settings": "Inställningar",
   "navigation-settings-signout": "Logga ut",
-
   "home-join-us": "Gå med här" ,
   "home-our-rules": "Våra regler" ,
   "home-about-us": "Om oss" ,
   "home-sign-in": "Logga in här" ,
   "home-start-app": "Starta app" ,
-
   "join-us-sign-in-with-discord": "Logga in med Discord",
   "join-us-title": "Tänk på detta innan du går med:",
   "join-us-list-rules": {
@@ -56,28 +50,19 @@
     "href": "https://discord.com/invite/zs5humSzF7",
     "prepend": " länk."
   },
-
-  
   "markdown-editor": "Redigerare",
   "markdown-preview": "Förhandsvisa",
-
-
   "app-section-title-public-news": "Publika artiklar",
   "app-section-title-internal-news": "Interna artiklar",
-
-
   "app-navigation-dashboard": "Dashboard",
   "app-navigation-news": "Nyheter",
   "app-navigation-events": "Events",
   "app-navigation-events-applications": "Event applikationer",
   "app-navigation-jobs": "Uppdrag",
   "app-navigation-market": "Blocket",
-
-
   "news-list-public": "Alla artiklar",
   "app-news-list-public": "Alla publika artiklar",
   "app-news-list-internal": "Alla interna artiklar",
-
   "news-view-all": "Visa alla",
   "news-publish-type": "Publiserings typ",
   "news-read-more": "Läs mer",
@@ -94,7 +79,6 @@
   "news-edit-names-cover": "Nyhets omslag",
   "news-edit-names-internal": "Intern publisering",
   "news-edit-names-external": "Publik publisering",
-
   "app-create-news": "Skapa nyhet",
   "app-edit-news": "Editera artikel",
   "app-create-public-news": "Skapa publik nyhet",
@@ -105,8 +89,7 @@
   "app-create-news-preview-picture": "Förhandsvisa omslagsbild",
   "app-create-news-publish-public": "Publisera som publik",
   "app-create-news-publish-internal": "Publisera som intern",
-
-
+  "app-create-news-mentions": "Skicka notis till dessa id (Separera med mellanslag)",
   "app-create-event": "Skapa event",
   "app-create-event-title-label": "Event titel",
   "app-create-event-title-label-error": "Titel är obligatoriskt",
@@ -114,18 +97,26 @@
   "app-create-event-desc-label-error": "Beskrivning är obligatoriskt",
   "app-create-event-checkbox-public": "Publisera event",
   "app-create-event-checkbox-include-groups": "Inkludera grupper",
+  "app-event-title": "Events",
   "app-event-active": "Aktiv",
+  "app-event-completed": "Avklarad",
+  "app-event-upcoming": "Kommande",
   "app-event-reserve": "Reservera",
-  "app-event-application-title": "Skicka ansökan",
+  "app-event-empty": "Inga events",
+  "app-event-application-title": "Applikationer",
+  "app-event-application-dialog-title": "Skicka ansökan",
   "app-event-application-label": "Denna roll kräver godkännande, vill du skicka in en ansökan?",
   "app-event-application-empty": "Finns inte applikationer som väntar på svar",
+  "app-event-application-read-more": "Läs mer",
+  "app-event-application-revoke": "Avböj",
+  "app-event-application-pledge": "Acceptera",
+  "app-event-application-applies": "ansöker om",
   "app-event-types-label": "Event typ",
   "app-event-types-combat": "Militär",
   "app-event-types-industry": "Industri",
   "app-event-types-social": "Socialt",
   "app-event-calender-read-more": "Läs mer",
   "app-event-calender-interested": "Anmäl intresse",
-  
   "app-event-recurring-type-label": "Schemaläggning",
   "app-event-recurring-type-none": "Ingen",
   "app-event-recurring-type-weekly": "Varje vecka",
@@ -133,54 +124,40 @@
   "app-event-recurring-type-monthy-first-current-day": "Första {date} varje månad",
   "app-event-recurring-type-annually": "Årligen",
   "app-event-recurring-type-weekdays": "Veckodagar",
-
   "app-create-event-combat-groups-title": "Militär skvadroner",
-
   "app-create-event-combat-group-title": "Grupp",
   "app-create-event-combat-group-label": "Grupp namn",
   "app-create-event-combat-group-label-error": "Grupp namn är obligatoriskt",
   "app-create-event-combat-application": "Applikation",
-
   "app-event-combat-types-label": "Skvadron typ",
   "app-event-combat-types-air": "Luft",
   "app-event-combat-types-ground": "Mark",
   "app-event-combat-types-mechanised": "Mekaniserad",
-
   "app-create-event-combat-roles-label": "Roller",
   "app-create-event-combat-roles-add-label": "Lägg till roll",
   "app-create-event-combat-roles-missing": "Inga tillagda roller",
   "app-create-event-combat-roles-title": "Roll namn",
   "app-create-event-combat-roles-title-error": "Roll namn är obligatoriskt",
-
-
   "app-create-event-combat-group-chief": "Officer",
   "app-create-event-combat-xo": "Verkställande Officer",
   "app-create-event-combat-troop": "Soldat",
   "app-create-event-combat-custom": "Anpassat",
-
-
-
   "super-admin-navigation-home": "Hem",
   "super-admin-navigation-roles": "Roller",
-
   "super-admin-rules-manage-roles-title": "Redigera roller",
   "super-admin-rules-manage-roles-list-item-read": "Tillstånd att läsa {name}",
   "super-admin-rules-manage-roles-list-item-write": "Tillstånd att skriva {name}",
-
   "super-admin-rules-manage-permissions-title": "Redigera tillstånd",
   "super-admin-rules-manage-permissions-subtitle": "Att Redigera tillstånd kan ha stora konsekvenser. Ändringar gjorda här påverkar alla roller.",
   "super-admin-rules-manage-permissions-save-label": "Alla värde och namn ersätts av ändringarna som gjorts här.",
   "super-admin-rules-manage-permissions-remove-label": "Detta tillstånd kommer tas bort vid sparande.",
-
   "super-admin-rules-add-permissions-title": "Addera tillstånd",
   "super-admin-rules-add-permissions-subtitle-1": "Adderade tillstånd läggs till på alla roller.",
   "super-admin-rules-add-permissions-subtitle-2": "Tillstånd namn ska vara på engelska.",
   "super-admin-rules-add-permissions-name": "Namn",
   "super-admin-rules-add-permissions-read": "Läsa",
   "super-admin-rules-add-permissions-write": "Skriva",
-
   "super-admin-rules-remove-permissions-title": "Anullera tillstånd",
   "super-admin-rules-remove-permissions-subtitle-1": "Anullerade tillstånd tas bort på alla roller.",
-
   "": "" 
 }

@@ -1,4 +1,5 @@
 import EventApplications from '~/server/models/event-application';
+import Events from '~/server/models/events'
 
 export default defineEventHandler(async (event): Promise<PaginationReturn> => {
   try {
@@ -27,7 +28,7 @@ export default defineEventHandler(async (event): Promise<PaginationReturn> => {
     const max_count = await EventApplications.find().count()
     const document = await EventApplications.aggregate([
       {
-        $sort: {date: -1}
+        $sort: { date: -1 }
       },
       {
         $skip: skip,
@@ -40,27 +41,78 @@ export default defineEventHandler(async (event): Promise<PaginationReturn> => {
           from: 'users',
           localField: 'applicant',
           foreignField: 'uid',
-          as: 'applicants'
-        }
+          as: 'applicants',
+        },
       },
       {
-        $unwind: '$applicants'
+        $unwind: '$applicants',
+      },
+      {
+        $lookup: {
+          from: 'events',
+          localField: 'event',
+          foreignField: '_id',
+          as: 'eventDetails',
+        },
+      },
+      {
+        $unwind: '$eventDetails',
+      },
+      {
+        $unwind: '$eventDetails.assignees',
       },
       {
         $project: {
           applicant: '$applicants.nickname',
-          role: 1,
-          group: 1,
-          event: 1,
+          role: {
+            $let: {
+              vars: {
+                matchingRole: {
+                  $arrayElemAt: [
+                    {
+                      $filter: {
+                        input: '$eventDetails.assignees.roles',
+                        as: 'role',
+                        cond: {
+                          $eq: [
+                            '$$role.id',
+                            '$role',
+                          ],
+                        },
+                      },
+                    },
+                    0,
+                  ],
+                },
+              },
+              in: {
+                name: '$$matchingRole.name',
+                id: '$$matchingRole.id',
+              },
+            },
+          },
+          group: {
+            name: '$eventDetails.assignees.name',
+            id: '$eventDetails.assignees.id',
+          },
+          event: {
+            title: '$eventDetails.title',
+            id: '$eventDetails._id',
+          },
           type: 1,
           date: 1,
-          id: '$_id'
-        }
+          id: '$_id',
+        },
       },
       {
-        $unset: '_id'
-      }
-    ])
+        $unset: '_id',
+      },
+    ]);
+    
+    
+    
+    
+    
 
     return removeRequestKeys({
       data: {

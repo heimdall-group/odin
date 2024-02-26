@@ -12,23 +12,6 @@ import { useStore } from '~/stores/main'
   });
   const emits = defineEmits(['refresh']);
 
-  const interestedLoading = ref(false);
-  const handleInterestedClick = async () => {
-    const { event } = props;
-    const token = await user.value.getIdToken();
-    interestedLoading.value = true
-    const { success } = await useInternalFetch(`/api/v1/events/${token}/interested`, {
-      method: 'POST',
-      body: {
-        id: event.id
-      }
-    })
-    if (success) {
-      emits('refresh');
-    }
-    interestedLoading.value = false;
-  };
-
   const handleRemoveAssignClick = async (group: AppEventCombatGroup, role: AppEventCombatRole) => {
     const { event } = props;
     const token = await user.value.getIdToken();
@@ -63,38 +46,6 @@ import { useStore } from '~/stores/main'
 </script>
 
 <template>
-  <v-container>
-    <navigation-sub-back-menu>
-      <template #title>  
-        <v-row class="ma-0" align="center">
-          <v-card-title>{{ event.title }}</v-card-title>
-          <v-chip class="mx-1">
-            {{ $t(`app-event-types-${event.type}`) }}
-          </v-chip>
-          <v-chip>
-            {{ $d(event.date, 'time') }}
-          </v-chip>
-        </v-row>
-      </template>
-      <template #prepend>
-        <v-btn @click="handleInterestedClick" :loading="interestedLoading" variant="text" color="secondary" :ripple="false" class="font-weight-bold" :disabled="event.currentUserIsInterested">
-          <template v-if="event.currentUserIsInterested" #prepend>
-            <font-awesome-icon icon="fa-solid fa-check" />
-          </template>
-          {{ $t('app-event-calender-interested') }}
-        </v-btn>
-      </template>
-    </navigation-sub-back-menu>
-    <v-row class="ma-0 px-3">
-      <v-chip
-        v-for="(interested, index) in event.interested"
-        :key="`app.events-event-interested-${index}`"
-        class="mr-1"
-      >
-        {{ interested }}
-      </v-chip>
-    </v-row>
-    <v-card-text>{{ event.desc }}</v-card-text>
     <v-row v-if="event.assignees.length > 0">
       <v-col
         v-for="(group, index) in event.assignees"
@@ -138,7 +89,7 @@ import { useStore } from '~/stores/main'
                     <dialogs-confirm 
                       v-if="role.application"
                       :success-handler="() => handleAssignClick(group, role)"
-                      title="app-event-application-title"
+                      title="app-event-application-dialog-title"
                       label="app-event-application-label"
                     >
                       <template #activator="{toggle}">
@@ -169,7 +120,6 @@ import { useStore } from '~/stores/main'
         </v-sheet>
       </v-col>
     </v-row>
-  </v-container>
 </template>
 
 <style scoped>

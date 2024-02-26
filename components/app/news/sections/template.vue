@@ -25,7 +25,7 @@
 </script>
 
 <template>
-  <app-templates-section v-if="!cache.empty" cols="12" lg="8" xl="6" :card-title="$t(cardTitle)">
+  <app-templates-section v-if="!cache.empty" cols="12" :card-title="$t(cardTitle)">
       <template #actions>
         <v-btn
           color="secondary"
@@ -39,7 +39,7 @@
       </template>
       <v-row class="ma-0" justify="center">
           <v-col cols="12" md="6">
-            <v-sheet class="h-100" flat>
+            <v-sheet class="h-100 d-flex flex-column" flat>
               <v-card-title class="text-white">{{main_article.title}}</v-card-title>
               <v-card-subtitle class="text-white">
                 {{main_article.author.nickname}} |
@@ -74,9 +74,9 @@
           </v-col>
       </v-row>
   </app-templates-section>
-  <app-templates-section v-else cols="12" lg="8" xl="6" :card-title="$t(cardTitle)">
+  <app-templates-section v-else cols="12" :card-title="$t(cardTitle)">
     <v-row class="ma-0 mb-12 mt-6 news-list-empty" justify="center" align="center">
-      <h3 class="font-weight-regular">{{ $t('news-empty') }}</h3>
+      <h3 class="font-weight-regular text-white">{{ $t('news-empty') }}</h3>
     </v-row>
   </app-templates-section>
 </template>

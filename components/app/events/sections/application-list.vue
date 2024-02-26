@@ -12,42 +12,43 @@
     cache: cache,
   }, applications));
 
-  const handleRefresh = async () => {
-    token.value = await user.value.getIdToken()
-    refresh();
-  }
-
   const removeApplication = (application: AppEventApplication) => {
     applications.value.splice(applications.value.indexOf(application), 1);
     if (applications.value.length === 0) {
       cache.empty = true;
     }
   }
+
+  const handleRefresh = async () => {
+    token.value = await user.value.getIdToken()
+    refresh();
+  }
 </script>
 
 <template>
-  <v-container>
-    <navigation-sub-back-menu :name="$t('app-event-application-title')" />
-    <v-row class="h-100" align="center">
-      <v-col v-if="cache.empty" class="h-100 d-flex justify-center align-center">
-        <v-card-title>{{ $t('app-event-application-empty') }}</v-card-title>
+  <app-templates-section :card-title="$t('app-event-application-title')" cols="12">
+    <template #actions>
+      <v-btn></v-btn>
+    </template>
+    <v-row class="h-100 ma-0">
+      <v-col v-if="cache.empty" class="d-flex justify-center align-center">
+        <p class="text-white">{{ $t('app-event-application-empty') }}</p>
       </v-col>
       <v-col
         v-else
         v-for="(application, index) in applications"
         :key="`app-events-applications-${index}`"
         cols="12"
-        md="6"
       >
         <app-events-applications-list-item :application="application" @refresh="removeApplication" />
       </v-col>
       <pagination-intersection :handler="handleRefresh" :cache="cache"  />
     </v-row>
-  </v-container>
+  </app-templates-section>
 </template>
 
 <style scoped>
   .v-row {
-    min-height: 250px;
+    min-height: 166px;
   }
 </style>

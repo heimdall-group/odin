@@ -1,3 +1,4 @@
+import { REST } from 'discord.js';
 import News from '~/server/models/news';
 
 export default defineEventHandler(async (event): Promise<Server_Return> => {
@@ -40,7 +41,32 @@ export default defineEventHandler(async (event): Promise<Server_Return> => {
         external: super_admin ? external : permissions['public-news'].write ? external : false,
         summary: body === undefined ? undefined : createNewsSummary(body),
       }
-    )
+    );
+
+    if (!document) {
+      throw 'Couldnt find article'
+    }
+
+    const { DISCORD_BOT_TOKEN, DISCORD_NEWS_CHANNEL_ID } = useRuntimeConfig();
+    const { BASE_URL } = useRuntimeConfig().public;
+    const rest = new REST({ version: '10' }).setToken(DISCORD_BOT_TOKEN);
+    
+    const mentions = document.mentions.map((mention) => `<@${mention}>`)
+    const url = document.internal && !document.external ? `${BASE_URL}/app/news/internal/${document.id}` : 
+    document.external ? `${BASE_URL}/information/news/${document.id}` : '';
+
+    const content = `# ${document.title} \n` +
+      document.summary !== '' ? `${document.summary}... \n\n` : '' +
+      `Läs hela inlägget här: ${url} \n` +
+      `${mentions}\n` +
+      `Av: <@${document.author}>`;
+    const imageResult: any = await rest.patch(`/channels/${DISCORD_NEWS_CHANNEL_ID}/messages/${document.message_ids?.cover}`, {body: {content: `${document.cover} \n`}})
+    const bodyResult: any = await rest.patch(`/channels/${DISCORD_NEWS_CHANNEL_ID}/messages/${document.message_ids?.body}`, {body: {content}});
+    document.message_ids = {
+      cover: imageResult.id,
+      body: bodyResult.id
+    };
+    document.save();
 
     return await removeRequestKeys({
       data: true,

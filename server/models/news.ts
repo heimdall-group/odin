@@ -13,6 +13,11 @@ const schema = new mongoose.Schema(
     internal: Boolean,
     summary: String,
     title: String,
+    mentions: Array,
+    message_ids: {
+      cover: String,
+      body: String,
+    },
   },
 )
 export default mongoose.model("News", schema);

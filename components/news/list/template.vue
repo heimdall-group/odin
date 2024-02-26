@@ -28,7 +28,7 @@
   <v-row class="my-0" align="start">
     <template v-if="cache.empty">
       <v-row class="ma-0 news-list-empty" justify="center" align="center">
-        <h3 class="font-weight-regular">{{ $t('news-empty') }}</h3>
+        <h3 class="font-weight-regular text-white">{{ $t('news-empty') }}</h3>
       </v-row>
     </template>
     <template

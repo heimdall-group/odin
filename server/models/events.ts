@@ -16,7 +16,7 @@ const assignee = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
-  active: Boolean,
+  status: String,
   assignees: [assignee],
   author: String,
   date: Date,
@@ -27,5 +27,6 @@ const schema = new mongoose.Schema({
   recurring: String,
   title: String,
   type: String,
+  guild_scheduled_event_id: String,
 });
 export default mongoose.model("Events", schema);

@@ -27,7 +27,7 @@
                 src="/image/logo/ASGARD.webp"
               ></v-img>
             </v-row>
-            <h1 class="font-weight-medium text-center">
+            <h1 class="font-weight-medium text-center text-white">
               <span
                 v-for="(letter, index) in ['A', 'S', 'G', 'A', 'R', 'D']"
                 :key="index"

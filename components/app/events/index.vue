@@ -8,7 +8,7 @@
   date.value.setHours(0, 0, 0, 0);
   const prevDate = ref(date.value);
 
-  const token = await user.value.getIdToken();
+  const token = ref(await user.value.getIdToken());
   const cache:usePaginationCache = reactive({limit: 10});
   const start = new Date(date.value);
   const end = new Date(date.value);
@@ -27,13 +27,13 @@
   });
 
   const { refresh } = await useAsyncData('events-date', () => usePagination({
-    url: `/api/v1/events/${token}`,
+    url: `/api/v1/events/${token.value}`,
     cache: cache,
     body,
-    remove: ['assignees', 'interested'],
+    remove: ['assignees'],
   }, events));
 
-  const handleDateFetch = (newDate: Date) => {
+  const handleDateFetch = async (newDate: Date) => {
     const preCacheInstance = preCache.value[newDate.toDateString()];
     const start = new Date(newDate);
     const end = new Date(newDate);
@@ -54,12 +54,13 @@
     } else {
       events.value = [];
       Object.assign(cache, {
-      completed: false,
-      skip: 0,
-      max_count: 0,
-      empty: false,
-      limit: cache.limit,
-    });
+        completed: false,
+        skip: 0,
+        max_count: 0,
+        empty: false,
+        limit: cache.limit,
+      });
+      token.value = await user.value.getIdToken();
       refresh();
     }
   }
@@ -68,7 +69,7 @@
 
 <template>
   <v-container class="smaller-max-container">
-    <navigation-sub-back-menu>
+    <navigation-sub-back-menu :name="$t('app-event-title')">
       <template v-if="permissions.write" #prepend>
         <v-btn
           to="/app/events/create"
@@ -83,14 +84,14 @@
       </template>
     </navigation-sub-back-menu>
     <app-events-template v-model="date">
-      <div class="gr-4 d-flex flex-column">
+      <v-row>
         <app-events-list-item
           v-for="(event, index) in events"
           :key="`app-events-calender-event-${index}`"
           :event="event"
         />
         <pagination-intersection :cache="cache" :handler="refresh" />
-      </div>
+      </v-row>
     </app-events-template>
   </v-container>
 </template>

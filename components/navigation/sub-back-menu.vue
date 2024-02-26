@@ -27,7 +27,7 @@
     :title="name"
     color="background"
   >
-    <template #title>
+    <template v-if="name === undefined" #title>
       <slot name="title"></slot>
     </template>
     <template #append>

@@ -27,6 +27,7 @@
   const loading = ref(false);
   const internalArticle = ref(props.internal);
   const external = ref(props.public);
+  const mentions = ref('');
   
   const state = ref(1);
   const image = ref('');
@@ -47,13 +48,13 @@
   <upload-2-step-drop-zone v-model="state" v-model:files="file" v-model:images="image" single class="h-100" button>
     <v-form
       bg-color="background"
-      @submit.prevent="() => {$emit('onSubmit', file, title, body, internal, external, loading)}"
+      @submit.prevent="() => {$emit('onSubmit', file, title, body, internal, external, loading, mentions)}"
       class="d-flex flex-column flex-nowrap fill-height"
     >
       <v-text-field v-model="title" :label="$t('app-create-news-title-label')" bg-color="background-800" variant="solo"></v-text-field>
       <markdown v-model="body" />
-      <section>
-        <template v-if="public && internal">
+      <v-row justify="center">
+        <v-col v-if="public && internal" cols="6">
           <v-row class="flex-column" align="center">
             <v-col cols="auto" class="pa-0">
               <v-checkbox 
@@ -78,41 +79,46 @@
               />
             </v-col>
           </v-row>
-        </template>
-        <v-btn
-          block
-          color="primary"
-          :loading="loading"
-          class="my-6"
-          type="submit"
-        >
-          {{$t('app-create-news-submit')}}
-        </v-btn>
-        <v-dialog v-model="dialog">
-        <template #activator>
+        </v-col>
+        <v-col cols="6">
+          <v-text-field v-model="mentions" :label="$t('app-create-news-mentions')" bg-color="background-800" variant="solo"></v-text-field>
+        </v-col>
+        <v-col cols="12">
           <v-btn
-            @click="dialog = !dialog"
             block
-            variant="plain"
-            :ripple="false"
+            color="primary"
+            :loading="loading"
+            class="my-6"
+            type="submit"
           >
-            {{$t('app-create-news-preview-picture')}}
+            {{$t('app-create-news-submit')}}
           </v-btn>
-        </template>
-          <v-card class="pa-3" color="transparent" flat elevation="0">
-            <v-row class="mb-0" justify="end">
-              <v-btn
-                @click="dialog = !dialog"
-                color="secondary"
-                icon="fa-solid fa-xmark"
-                variant="plain"
-                :ripple="false"
-              />
-            </v-row>
-            <v-img :src="image"></v-img>
-          </v-card>
-        </v-dialog>
-      </section>
+          <v-dialog v-model="dialog">
+          <template #activator>
+            <v-btn
+              @click="dialog = !dialog"
+              block
+              variant="plain"
+              :ripple="false"
+            >
+              {{$t('app-create-news-preview-picture')}}
+            </v-btn>
+          </template>
+            <v-card class="pa-3" color="transparent" flat elevation="0">
+              <v-row class="mb-0" justify="end">
+                <v-btn
+                  @click="dialog = !dialog"
+                  color="secondary"
+                  icon="fa-solid fa-xmark"
+                  variant="plain"
+                  :ripple="false"
+                />
+              </v-row>
+              <v-img :src="image"></v-img>
+            </v-card>
+          </v-dialog>
+        </v-col>
+      </v-row>
     </v-form>
   </upload-2-step-drop-zone>
 </template>

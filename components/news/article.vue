@@ -22,7 +22,7 @@
     }
   }
 
-  const { data } = await useAsyncData('news-article', () => useInternalFetch(`/api/v1/news/id/${id}`, {
+  const { data, refresh } = await useAsyncData('news-article', () => useInternalFetch(`/api/v1/news/id/${id}`, {
     method: 'POST',
     body: {
       token: token,
